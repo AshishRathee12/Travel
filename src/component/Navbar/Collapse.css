@@ -1,7 +1,57 @@
-.navbar{
-    background-color: rgb(16,2,37) !important;
+/* navbar  */
+.navbar {
+    background-color: rgb(16, 2, 37) !important;
     padding: 0px !important;
+    color: white !important;
 }
-.logo-img{
+
+a {
+    color: white !important;
+}
+
+.logo-img {
     width: 18% !important;
+}
+
+.navbar-nav button {
+    background-color: rgb(251, 251, 251) !important;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.login-btn {
+    position: relative;
+}
+.login-btn .show{
+    display: block;
+}
+
+.login-form {
+    position: absolute;
+    right: 5%;
+    padding: 15px;
+    border-radius: 5px;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+.login-form input {
+    border: 1px solid rgba(16, 2, 37, 0.582);
+    padding: 3px 3px;
+    border-radius: 2px;
+}
+
+.submit-btn button {
+    
+    color: #fff;
+    background-color: #100225 !important;
+}
+.login-btn .hide{
+    display: none;
+}
+.login-btn .show{
+    display: block;
 }
