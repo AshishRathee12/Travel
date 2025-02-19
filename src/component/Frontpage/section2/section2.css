@@ -1,0 +1,86 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.best-describ {
+    display: flex;
+    /* justify-content: center; */
+}
+
+.describ-icon {
+    margin-right: 15px;
+}
+
+.best-describ svg {
+    font-size: 20px;
+}
+
+.best-describ-text p {
+    font-size: 14px;
+    font-weight: 600;
+    word-spacing: 2px;
+    /* letter-spacing: 0.5px; */
+}
+
+.discount-section {
+    background-image: url('../images/discount.webp');
+    background-position: center;
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.discount-content h1 {
+    font-size: 48px;
+    color: #fff;
+    font-weight: 800;
+}
+
+.discount-sub p {
+    font-size: 17px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.discount-btn button {
+    border: 0px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+
+
+@media (max-width:800px) and (min-width:590px) {
+    .discount-section {
+        height: 50vh;
+    }
+
+    .discount-content h1 {
+        font-family: "Roboto";
+        font-size: 32px;
+        color: #fff;
+        font-weight: 600;
+    }
+}
+
+@media (max-width:560px) {
+    .discount-section {
+        background-position: 61% 87%;
+        background-size: 250% 102%;
+        background-repeat: no-repeat;
+        height: 80vh;
+        align-items: end;
+    }
+    .discount-content{
+        margin-bottom: 20px;
+    }
+}

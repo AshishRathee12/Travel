@@ -1,6 +1,7 @@
 /* navbar  */
+
 .navbar {
-    background-color: rgb(16, 2, 37) !important;
+    background-color: rgb(5,32,60) !important;
     padding: 0px !important;
     color: white !important;
 }
@@ -10,18 +11,21 @@ a {
 }
 
 .logo-img {
-    width: 18% !important;
+    width: 200px !important;
 }
 
 .navbar-nav button {
     background-color: rgb(251, 251, 251) !important;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 13px;
     border-radius: 5px;
 }
 
 .login-btn {
     position: relative;
+}
+.login-btn button{
+    font-weight: 600;
 }
 .login-btn .show{
     display: block;
@@ -30,28 +34,34 @@ a {
 .login-form {
     position: absolute;
     right: 5%;
-    padding: 15px;
+    padding: 20px 30px;
     border-radius: 5px;
-    top: 100%;
+    top: 110%;
     background-color: #fff;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
 }
 
 .login-form input {
-    border: 1px solid rgba(16, 2, 37, 0.582);
-    padding: 3px 3px;
+    border: 1px solid rgba(5,32,60);
+    padding: 3px 15px;
+    margin-bottom: 20px;
     border-radius: 2px;
 }
 
 .submit-btn button {
-    
     color: #fff;
-    background-color: #100225 !important;
+    background-color: rgb(5,32,60) !important;
 }
 .login-btn .hide{
     display: none;
 }
 .login-btn .show{
     display: block;
+}
+.form .register {
+    color: black;
+    span{
+        color: Blue;
+    }
 }

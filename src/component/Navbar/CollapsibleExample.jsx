@@ -20,43 +20,46 @@ function CollapsibleExample() {
     setShow(!show)
   }
   // form submit 
-  const formsubmit=(e)=>{
+  const formsubmit = (e) => {
     e.preventDefault();
   }
 
 
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">
+      <Container fluid='xl' className='p-0'>
+        <Navbar.Brand href="/" className='col-md-4'>
           <img src='/images/logo.png' className='logo-img'></img>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#pricing"><CiHeart size={28} /></Nav.Link>
-          </Nav>
-          <Nav className='login-btn'>
-            <button onClick={showform}>Login</button>
+        {/* <Navbar.Toggle aria-controls="responsive-navbar-nav"  className='order-4'/> */}
+        <Nav className="offset-md-5 offset-sm-4 offset-3">
+          <Nav.Link href="/"><CiHeart size={28} /></Nav.Link>
+        </Nav>
+        {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
+          <Nav className='login-btn ms-2 me-4'>
+            <button onClick={showform} className='px-3'>Log in</button>
             {/* login-form  */}
             <div className={`${show ? 'show' : 'hide'} login-form`}>
               <div className="login-content">
                 <div className="profile-pic d-flex align-items-center justify-content-center mb-3">
-                  <CgProfile size={50} color='#100225' />
+                  <CgProfile size={70} color='#100225' />
                 </div>
                 <div className="form">
-                  <form className='d-flex align-items-center flex-column'onSubmit={formsubmit}>
-                    <input type="text" placeholder="Enter Username" className='mb-2' />
-                    <input type="password" placeholder="Password" className='mb-3' />
-                    <div className="submit-btn">
-                      <button>Login</button>
+                  <form className='d-flex align-items-center flex-column' onSubmit={formsubmit}>
+                    <input type="text" placeholder="Enter Username" className='' />
+                    <input type="password" placeholder="Password" className='' />
+                    <div className="submit-btn w-100">
+                      <button className='w-100'>Login</button>
+                    </div>
+                    <div className="register mt-3">
+                      <p>Not a member? <span>Register</span></p>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
           </Nav>
-        </Navbar.Collapse>
+        {/* </Navbar.Collapse> */}
       </Container>
     </Navbar>
   );
