@@ -27,6 +27,27 @@
     width: 55%;
     border-radius:40px;
 }
+.auto-suggestion {
+    background-color: #fff;
+    padding: 3px 2px 3px 10px;
+    width: 50%;
+    margin-top:4px;
+    border-radius:10px;
+}
+.auto-suggestion-list li{
+    list-style: none;
+    padding: 3px 0px;
+}
+.auto-suggestion li:hover{
+    background-color: #f0f0f0;
+}
+.auto-suggestion a{
+    text-decoration: none;
+    color: black !important;
+}
+.auto-suggestion ul{
+    padding: 0px ;
+}
 .search-heading h1{
     font-size: 56px;
     font-family: "Roboto";
@@ -62,6 +83,25 @@
 .form-btn svg{
     margin-left: 10px;
 }
+
+
+.sugg-show{
+    display: block;
+}
+.sugg-hide{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -100,5 +140,12 @@
         padding: 2px 0 10px 0;
         border-bottom: 1px solid rgba(90, 88, 88, 0.218);
         margin-bottom: 20px;
+    }
+    .auto-suggestion {
+        background-color: #fff;
+        padding: 3px 2px 3px 10px;
+        width: 80%;
+        margin-top:4px;
+        border-radius:10px;
     }
 }

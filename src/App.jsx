@@ -12,6 +12,7 @@ function App() {
     <>
       <Row>
         <CollapsibleExample />
+        {/* <Alert severity="info">This is an info Alert.</Alert> */}
       </Row>
 
       <Routes>

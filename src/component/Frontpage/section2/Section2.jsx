@@ -7,29 +7,7 @@ import './section2.css'
 
 export default function Section2() {
 
-    const url = 'https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination?query=taj mahal';
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': 'ba5add63eamsh923b36e54af893ep14f893jsn0aaa91cf53f9',
-            'x-rapidapi-host': 'booking-com15.p.rapidapi.com'
-        }
-    };
 
-    const topplaces = async () => {
-
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            console.log(result.data[2]);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    useEffect(() => {
-        topplaces();
-    })
 
 
 
