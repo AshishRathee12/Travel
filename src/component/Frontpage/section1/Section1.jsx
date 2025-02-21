@@ -46,16 +46,11 @@ export default function Section1() {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      // console.log(result)
+      console.log(result)
       const resultdata = result.data;
       console.log(resultdata)
-      if (resultdata != undefined) {
-        // console.log(resultdata);
-        setApiData(resultdata)
-        setSuggestion(true);
-      } else {
-        setSuggestion(false)
-      }
+      setApiData(resultdata)
+      setSuggestion(true);
     } catch (error) {
       console.error(error);
     }
@@ -80,8 +75,6 @@ export default function Section1() {
 
   const searchhotel = (e) => {
     e.preventDefault();
-    // console.log(search);
-    // setHoteldata(search);
     if (hoteldata != '') {
       adddata();
     } else {
@@ -130,18 +123,26 @@ export default function Section1() {
                           <div className="auto-suggestion-list">
                             <ul>
                               {apiData.map((elem, index) => {
-                                const id = elem.hotelId;
-                                if (!elem.hotelId) {
-                                  return null
-                                } else {
-                                  return (
-                                    <Link as={NavLink} to={id} key={index}>
-                                      <li >{elem.regionNames.shortName} </li>
-                                    </Link>
+                                const id = '/hotelList/' + elem.cityId;
+                                const ids = elem.cityId || elem.gaiaId;
+                                console.log(ids)
+                                const listing = '/hotelList/' + ids
 
+                                if (elem.cityId || elem.gaiaId) {
 
-                                  )
                                 }
+
+                                // if (!elem.hotelId) {
+                                //   return null
+                                // } else {
+                                return (
+                                  <Link as={NavLink} to={listing} key={index}>
+                                    <li >{elem.regionNames.shortName} </li>
+                                  </Link>
+
+
+                                )
+                                // }
 
 
                               })}
