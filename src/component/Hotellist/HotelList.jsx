@@ -52,11 +52,11 @@ export default function HotelList() {
             <Container fluid='md'>
                 <Row>
                     {hotelsuggest.map((elem, index) => {
-                        // console.log(elem);
+                        console.log(elem);
                         const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
                         const totalreviews = elem?.reviews?.total || "Nice";
                         const reviewscore=elem?.reviews?.score || "";
-                        const roomleft=elem?.availability?.minRoomsLeft || "Check Availability";
+                        const roomleft=elem?.availability?.minRoomsLeft && "";
                         const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
                         const neighborhood = elem?.neighborhood?.name || "Not found";
 

@@ -2,3 +2,6 @@
 .root{
     overflow: hidden;
 }
+body{
+    line-height: normal !important
+}

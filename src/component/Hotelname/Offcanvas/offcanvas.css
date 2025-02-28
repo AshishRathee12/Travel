@@ -1,12 +1,15 @@
-button {
+.offcanvas-btn {
     background-color: transparent !important;
-    color: black !important;
-
+    color: rgb(255, 255, 255) !important;
+    font-weight: 700;
+    border: none !important;
+    position: absolute;
+    font-size: 25px;
+    top: 50%;
 }
 
 .btn {
-    border: none !important;
-    position: absolute;
+
 }
 
 .offcanvas {

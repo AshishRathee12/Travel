@@ -3,6 +3,12 @@
     /* max-height: 465px; */
     height: 100%;
 }
+.big-image{
+    height: 100%;
+}
+.front-row {
+    height: 550px;
+}
 
 .small-image {
     height: 100%;
@@ -13,13 +19,12 @@
 .small-image img {
     width: 100%;
     height: 100%;
-
 }
 
 .small-image-1 img {
     width: 100%;
     height: 100%;
-    max-height: calc(465/2px);
+    /* max-height: calc(465/2px); */
 
 }
 
@@ -29,6 +34,16 @@
 
 .small-col {
     max-height: 98% !important;
-
 }
 
+.more-images::before {
+    content: "";
+    background-color: black;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    opacity: 0.3;
+
+}
