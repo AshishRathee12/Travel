@@ -32,7 +32,13 @@ export default function Section1() {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': 'ba5add63eamsh923b36e54af893ep14f893jsn0aaa91cf53f9',
+      // my api =some limit left 
+      // 'x-rapidapi-key': 'ba5add63eamsh923b36e54af893ep14f893jsn0aaa91cf53f9',
+      // disha api limit exceeds
+      // 'x-rapidapi-key': 'bd52f8d6a4msh8eb450807febe1bp1b3e5djsn175ae6c6f60b',
+
+      'x-rapidapi-key': '6b589d747cmsh6bfc6f6a58159d8p10b9afjsn4f6d85818a10',
+
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };
@@ -46,9 +52,9 @@ export default function Section1() {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(result)
+      // console.log(result)
       const resultdata = result.data;
-      console.log(resultdata)
+      // console.log(resultdata)
       setApiData(resultdata)
       setSuggestion(true);
     } catch (error) {
@@ -123,26 +129,20 @@ export default function Section1() {
                           <div className="auto-suggestion-list">
                             <ul>
                               {apiData.map((elem, index) => {
-                                const id = '/hotelList/' + elem.cityId;
-                                const ids = elem.cityId || elem.gaiaId;
-                                console.log(ids)
+                                const ids = elem.gaiaId;
+                                // console.log(ids)
                                 const listing = '/hotelList/' + ids
 
-                                if (elem.cityId || elem.gaiaId) {
 
+                                if (!ids) {
+                                  return null
+                                } else {
+                                  return (
+                                    <Link as={NavLink} to={listing} key={index}>
+                                      <li >{elem.regionNames.shortName} </li>
+                                    </Link>
+                                  )
                                 }
-
-                                // if (!elem.hotelId) {
-                                //   return null
-                                // } else {
-                                return (
-                                  <Link as={NavLink} to={listing} key={index}>
-                                    <li >{elem.regionNames.shortName} </li>
-                                  </Link>
-
-
-                                )
-                                // }
 
 
                               })}

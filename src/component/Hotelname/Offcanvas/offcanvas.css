@@ -1,0 +1,53 @@
+button {
+    background-color: transparent !important;
+    color: black !important;
+
+}
+
+.btn {
+    border: none !important;
+    position: absolute;
+}
+
+.offcanvas {
+    max-width: 96% !important;
+    border-radius: 13px;
+}
+
+.offcanvas.offcanvas-start {
+    top: 18px;
+    bottom: 18px;
+    left: 18px;
+    width: 100%;
+    /* width: ""; */
+    right: 18px;
+}
+
+.show-image {
+    border-radius: 10px;
+}
+
+.show-images-1 {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.2s all ease-in;
+}
+
+.show-images-1:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.offcanvas-title {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    text-align: center
+}
+
+.offcanvas-body {
+    border-top: 1px solid rgb(209, 208, 208);
+}
+
+.offcanvas-header .btn-close {
+    margin: 0px !important;
+}

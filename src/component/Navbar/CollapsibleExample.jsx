@@ -42,7 +42,7 @@ function CollapsibleExample() {
             <div className={`${show ? 'show' : 'hide'} login-form`}>
               <div className="login-content">
                 <div className="profile-pic d-flex align-items-center justify-content-center mb-3">
-                  <CgProfile size={70} color='#100225' />
+                  <CgProfile size={70} color='#003b95' />
                 </div>
                 <div className="form">
                   <form className='d-flex align-items-center flex-column' onSubmit={formsubmit}>
