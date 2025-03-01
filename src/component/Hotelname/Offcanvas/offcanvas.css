@@ -33,12 +33,13 @@
 .show-images-1 {
     border-radius: 10px;
     overflow: hidden;
+    transform: scale(1.2);
     transition: 0.2s all ease-in;
 }
 
 .show-images-1:hover {
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(1.4);
 }
 
 .offcanvas-title {

@@ -36,9 +36,9 @@ export default function Section1() {
       // 'x-rapidapi-key': 'ba5add63eamsh923b36e54af893ep14f893jsn0aaa91cf53f9',
       // disha api limit exceeds
       // 'x-rapidapi-key': 'bd52f8d6a4msh8eb450807febe1bp1b3e5djsn175ae6c6f60b',
-
-      'x-rapidapi-key': '6b589d747cmsh6bfc6f6a58159d8p10b9afjsn4f6d85818a10',
-
+      // sonia 
+      'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
+      // parveen 
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };

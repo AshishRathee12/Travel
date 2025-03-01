@@ -20,7 +20,7 @@ export default function HotelList() {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '6b589d747cmsh6bfc6f6a58159d8p10b9afjsn4f6d85818a10',
+            'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
             'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
         }
     };
@@ -30,7 +30,7 @@ export default function HotelList() {
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            // console.log(result.properties);
+            // console.log(result);
             const finalresult = result.properties;
             setHotelsuggest(finalresult)
         } catch (error) {
@@ -51,17 +51,27 @@ export default function HotelList() {
 
             <Container fluid='md'>
                 <Row>
-                    {hotelsuggest.map((elem, index) => {
-                        console.log(elem);
-                        const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
-                        const totalreviews = elem?.reviews?.total || "Nice";
-                        const reviewscore=elem?.reviews?.score || "";
-                        const roomleft=elem?.availability?.minRoomsLeft && "";
-                        const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
-                        const neighborhood = elem?.neighborhood?.name || "Not found";
-
+                    {hotelsuggest.filter((elem) => {
+                        return (
+                            elem?.propertyImage?.image?.url &&
+                            elem?.reviews?.total &&
+                            elem?.reviews?.score &&
+                            // elem?.availability.minRoomsLeft &&
+                            elem?.destinationInfo?.distanceFromDestination?.value
+                            // elem?.neighborhood?.name
+                        );
+                    }).map((elem, index) => {
+                        // ... rest of the code remains the same
 
                         const hotelname = '/hotelname/' + elem.name;
+
+
+                        const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
+                        const totalreviews = elem?.reviews?.total || "Nice";
+                        const reviewscore = elem?.reviews?.score || "";
+                        const roomleft = elem?.availability.minRoomsLeft;
+                        const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
+                        const neighborhood = elem?.neighborhood?.name || "Not found";
                         return (
                             <Col md={10} lg={9} xl={7} sm={12} className='hotel-list-items offset-lg-3 offset-md-2' key={index}>
                                 <Row className='p-2'>
@@ -111,7 +121,15 @@ export default function HotelList() {
                                 </Row>
                             </Col>
                         )
-                    })}
+                    })
+                    }
+                    {/* {hotelsuggest.map((elem, index) => {
+                        console.log(elem);
+                       
+
+
+                     
+                    } */}
 
                 </Row>
             </Container>
