@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Hotelhead from './Hotelhead/Hotelhead';
+import Hotelreview from './Hotelreview/Hotelreview';
+import Facilities from './Facilities/Facilities';
 
 export default function Hotelname() {
     const id = useParams();
@@ -23,7 +25,7 @@ export default function Hotelname() {
             const response = await fetch(url, options);
             const result = await response.json();
             const responses = result.data;
-            console.log(responses)
+            // console.log(responses)  
             if (responses.length >= 0) {
                 {
                     responses.map((elem) => {
@@ -51,7 +53,6 @@ export default function Hotelname() {
 
 
 
-    // works with hotel details api instead of this 
 
     
 
@@ -65,6 +66,8 @@ export default function Hotelname() {
     return (
         <div>
           {hotellists != 0 && <Hotelhead id={hotellists} />}
+          {hotellists != 0 && <Hotelreview id={hotellists} />}
+          {hotellists != 0 && <Facilities id={hotellists} />}
 
         </div>
     )

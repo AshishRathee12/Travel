@@ -88,10 +88,10 @@ video {
     text-align: justify;
 }
 
-.show-map-link p{
-    color: blue;
-    font-weight: 300;
-
+.show-map-link {
+    color: blue ;
+    font-weight: 500;
+    transition: 1s all ease-in;
 }
 
 .show-map-link:hover {

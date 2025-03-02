@@ -1,0 +1,24 @@
+.review-rating{
+    background-color: rgb(6, 6, 111);
+    padding: 7px 10px;
+    color: #fff;
+    border-radius: 4px;
+}
+.overall-content{
+    font-size: 18px;
+    font-weight: 500;
+}
+.progress, .progress-stacked{
+    height: 8px !important;
+}
+.progress-bar{
+    background-color: green !important;
+}
+.review-tagline{
+    display: flex;
+    justify-content: space-between;
+    margin-top:20px ;
+}
+.review-container{
+    border-top: 1px solid #aeabab72;
+}

@@ -47,6 +47,8 @@ export default function Hotelhead({ id }) {
         // console.log(imageslist)
     }
 
+    // map function 
+
     const mapopen = () => {
         const longitude = lists.summary.location.coordinates.longitude;
         const latitude = lists.summary.location.coordinates.latitude;
@@ -183,9 +185,6 @@ export default function Hotelhead({ id }) {
                         </Col>
                     </Row>
                 </Container>
-
-
-
             ) : (
                 <h1>nothing match</h1>
             )
