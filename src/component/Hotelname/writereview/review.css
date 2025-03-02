@@ -6,7 +6,7 @@
     }
 }
 
-input {
+.review-form input {
     width: 100%;
     padding:8px;
     border-radius: 4px;
@@ -22,7 +22,7 @@ input {
 .input:focus {
     outline: blue;
 }
-input:focus {
+.review-form input:focus {
     outline: none; /* Remove the default outline */
     border: 1px solid #007bff; /* Add a custom border color */
     box-shadow: 0 0 10px #004690; /* Add a custom box shadow */

@@ -45,13 +45,13 @@ export default function Hotelreview({ id }) {
 
   return (
     <Container fluid="sm review-container">
-      <Row>
-        <Col>
-          <h3 className='mt-3'>Guest Reviews</h3>
-        </Col>
-      </Row>
       {reviews.averageOverallRating ? (
         <Fragment>
+          <Row>
+            <Col>
+              <h3 className='mt-3'>Guest Reviews</h3>
+            </Col>
+          </Row>
           <Row>
             <Col>
               <div className="overall-rating d-flex align-items-center">

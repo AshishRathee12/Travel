@@ -89,7 +89,7 @@ video {
 }
 
 .show-map-link {
-    color: blue ;
+    color: #003b95 ;
     font-weight: 500;
     transition: 1s all ease-in;
 }
@@ -97,4 +97,7 @@ video {
 .show-map-link:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+.location-icon{
+    color: #003b95;
 }

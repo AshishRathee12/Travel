@@ -62,13 +62,12 @@ export default function Hotelhead({ id }) {
                 <Container fluid="sm">
                     <Row>
                         <Col>
-                            <div className="content1">
+                            <div className="content1 mt-4">
                                 <div className="name">
-
-                                    <h1>{lists.summary.name} </h1>
+                                    <h2>{lists.summary.name} </h2>
                                 </div>
                                 <div className="location d-flex">
-                                    <p> <FaLocationDot />{lists.summary.location.address.addressLine}</p>
+                                    <p> <FaLocationDot className='location-icon'/>{lists.summary.location.address.addressLine}</p>
                                     <p className='show-map-link ms-2' onClick={() => mapopen()}> - show map </p>
                                 </div>
                                 <Row className='head-content'>
@@ -186,7 +185,11 @@ export default function Hotelhead({ id }) {
                     </Row>
                 </Container>
             ) : (
-                <h1>nothing match</h1>
+                <Container>
+                    <div className="loadingarea">
+                        <div class="containerer"></div>
+                    </div>
+                </Container>
             )
             }
         </section >

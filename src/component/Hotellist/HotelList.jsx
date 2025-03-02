@@ -137,22 +137,10 @@ export default function HotelList() {
     }
     else {
         return (
-            <Container className=' loading-stage d-flex justify-content-center align-items-center'>
-                <Row>
-                    <Col>
-                        <div className="container3">
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
+            <div className="loadingarea">
+
+                <div class="containerer"></div>
+            </div>
         )
     }
 
