@@ -8,6 +8,7 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import HotelList from './component/Hotellist/HotelList';
 import Hotelname from './component/Hotelname/Hotelname';
+import Footer from './component/Footercompo/Footer';
 
 
 function App() {
@@ -25,12 +26,15 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />}></Route>
-        <Route path='/HotelList/:id' element={<HotelList />}></Route>
+        <Route path='/HotelList/:name/:id' element={<HotelList />}></Route>
         <Route path='/Hotelname/:id' element={<Hotelname />}></Route>
       </Routes>
 
-
-    </>
+      {/* <Footer /> */}
+      {/* <Row>
+     </Row> */}
+     
+     </>
   )
 }
 

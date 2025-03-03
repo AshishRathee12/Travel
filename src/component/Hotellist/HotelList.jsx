@@ -1,148 +1,137 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, NavLink } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import './HotelList.css';
 import { FaChevronRight } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-
 export default function HotelList() {
+  const [hotelsuggest, setHotelsuggest] = useState([]);
+  const [numberof, setNumberof] = useState(0);
+  const [filteredHotels, setFilteredHotels] = useState([]);
+  const [sorting, setSorting] = useState("RECOMMENDED");
 
+  const id = useParams();
+  const hotelid = id.id;
+  const nameing = id.name;
 
-    const [hotelsuggest, setHotelsuggest] = useState([]);
+  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=2025-05-26&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=2025-05-27`;
 
-
-    const id = useParams();
-    const hotelid = id.id;
-    // console.log(hotelid)
-    const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=2025-05-26&locale=en_IN&adults_number=1&sort_order=REVIEW&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=2025-05-27`;
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
-            'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
-        }
-    };
-
-
-    const list = async () => {
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            // console.log(result);
-            const finalresult = result.properties;
-            setHotelsuggest(finalresult)
-        } catch (error) {
-            console.error(error);
-        }
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
+      'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
+  };
 
+  const list = async () => {
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(result)
+      const finalresult = result.properties;
+      setHotelsuggest(finalresult);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    useEffect(() => {
-        list();
-    }, [hotelid])
+  useEffect(() => {
+    list();
+  }, [hotelid]);
 
+  useEffect(() => {
     if (hotelsuggest.length > 0) {
+      const filteredHotels = hotelsuggest.filter((elem) => {
         return (
-
-            // <>
-            //     <h1>element present</h1></>
-
-            <Container fluid='md'>
-                <Row>
-                    {hotelsuggest.filter((elem) => {
-                        return (
-                            elem?.propertyImage?.image?.url &&
-                            elem?.reviews?.total &&
-                            elem?.reviews?.score &&
-                            // elem?.availability.minRoomsLeft &&
-                            elem?.destinationInfo?.distanceFromDestination?.value
-                            // elem?.neighborhood?.name
-                        );
-                    }).map((elem, index) => {
-                        // ... rest of the code remains the same
-
-                        const hotelname = '/hotelname/' + elem.name;
+          elem?.propertyImage?.image?.url &&
+          elem?.reviews?.total &&
+          elem?.reviews?.score &&
+          // elem?.availability.minRoomsLeft &&
+          elem?.destinationInfo?.distanceFromDestination?.value
+          // elem?.neighborhood?.name
+        );
+      });
+      setFilteredHotels(filteredHotels);
+      setNumberof(filteredHotels.length);
+    }
+  }, [hotelsuggest]);
 
 
-                        const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
-                        const totalreviews = elem?.reviews?.total || "Nice";
-                        const reviewscore = elem?.reviews?.score || "";
-                        const roomleft = elem?.availability.minRoomsLeft;
-                        const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
-                        const neighborhood = elem?.neighborhood?.name || "Not found";
-                        return (
-                            <Col md={10} lg={9} xl={7} sm={12} className='hotel-list-items offset-lg-3 offset-md-2' key={index}>
-                                <Row className='p-2'>
-                                    <Col sm={5} md={6} className='p-0'>
-                                        <div className="list-image">
-                                            {/* <img src={propertyImage.image.url}></img> */}
-                                            <img src={roomimg} className='img-fluid'></img>
-                                        </div>
-                                    </Col>
-                                    <Col sm={7} md={6} className='pe-0'>
-                                        <div className="hotel-list-content">
-                                            <div className="hotel-name">
-                                                <div className="hotel-description d-flex justify-content-between">
-                                                    <div className="name">
-                                                        <h2>{elem.name}</h2>
-                                                    </div>
-                                                    <div className="reviews-box d-flex">
-                                                        <div className="score me-2">
-                                                            <p className='mb-0 review-heading'>Review Score</p>
-                                                            <p className='mb-0 total-review text-end'>{totalreviews} Reviews</p>
-                                                        </div>
-                                                        <div className="rating">
-                                                            <p className='mb-0'>{reviewscore}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="location d-flex mt-2">
-                                                    <a href="http://" target="_blank" rel="noopener noreferrer" className=''>{neighborhood}</a>
-                                                    <ul className='mb-0 mt-1 p-0 ps-3'>
-                                                        <li className='location-distance'>{distance}Km from center</li>
-                                                    </ul>
-                                                </div>
-                                                <div className="availability mt-2">
-                                                    <p>{roomleft} left</p>
-                                                </div>
-                                            </div>
-                                            <div className="price">
-                                                <p className='rate'>{elem.mapMarker.label}</p>
-                                                <div className="available-button">
-                                                    <Link as={NavLink} to={hotelname}>
-                                                        <button className='btn btn-primary'>See Availability <FaChevronRight /></button>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        )
-                    })
-                    }
-                    {/* {hotelsuggest.map((elem, index) => {
-                        console.log(elem);
-                       
 
-
-                     
-                    } */}
-
+  if (hotelsuggest.length > 0) {
+    return (
+      <Container fluid='md'>
+        <Row className=' gy-3'>
+          <div className="number-of-items">
+            <h1>{nameing}: {numberof} properties found</h1>
+          </div>
+          {filteredHotels.map((elem, index) => {
+            const hotelname = '/hotelname/' + elem.name;
+            const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
+            const totalreviews = elem?.reviews?.total || "Nice";
+            const reviewscore = elem?.reviews?.score || "";
+            const roomleft = elem?.availability.minRoomsLeft;
+            const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
+            const neighborhood = elem?.neighborhood?.name || "Not found";
+            return (
+              <Col md={10} lg={9} xl={7} sm={12} className='hotel-list-items offset-lg-3 offset-md-2' key={index}>
+                <Row className='p-2'>
+                  <Col sm={5} md={6} className='p-0'>
+                    <div className="list-image">
+                      <img src={roomimg} className='img-fluid'></img>
+                    </div>
+                  </Col>
+                  <Col sm={7} md={6} className='pe-0'>
+                    <div className="hotel-list-content">
+                      <div className="hotel-name">
+                        <div className="hotel-description d-flex justify-content-between">
+                          <div className="name">
+                            <h2>{elem.name}</h2>
+                          </div>
+                          <div className="reviews-box d-flex">
+                            <div className="score me-2">
+                              <p className='mb-0 review-heading'>Review Score</p>
+                              <p className='mb-0 total-review text-end'>{totalreviews} Reviews</p>
+                            </div>
+                            <div className="rating">
+                              <p className='mb-0'>{reviewscore}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="location d-flex mt-2">
+                          <a href="http://" target="_blank" rel="noopener noreferrer" className=''>{neighborhood}</a>
+                          <ul className='mb-0 mt-1 p-0 ps-3'>
+                            <li className='location-distance'>{distance}Km from center</li>
+                          </ul>
+                        </div>
+                        <div className="availability mt-2">
+                          <p>{roomleft} left</p>
+                        </div>
+                      </div>
+                      <div className="price">
+                        <p className='rate'>{elem.mapMarker.label}</p>
+                        <div className="available-button">
+                          <Link as={NavLink} to={hotelname}>
+                            <button className='btn btn-primary'>See Availability <FaChevronRight /></button>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
                 </Row>
-            </Container>
-        )
-    }
-    else {
-        return (
-            <div className="loadingarea">
-
-                <div class="containerer"></div>
-            </div>
-        )
-    }
-
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
+    );
+  } else {
+    return (
+      <div className="loadingarea">
+        <div className="containerer"></div>
+      </div>
+    );
+  }
 }
-

@@ -29,6 +29,7 @@ export default function Hotelreview({ id }) {
         const response = await fetch(url, options);
         const result = await response.json();
         setReviews(result[0])
+        console.log(result[0])
       } catch (error) {
         console.error(error);
       }

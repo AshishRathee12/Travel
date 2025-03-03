@@ -54,7 +54,7 @@ export default function Hotelname() {
 
 
 
-    
+
 
 
 
@@ -65,9 +65,15 @@ export default function Hotelname() {
 
     return (
         <div>
-          {hotellists != 0 && <Hotelhead id={hotellists} />}
-          {hotellists != 0 && <Hotelreview id={hotellists} />}
-          {hotellists != 0 && <Facilities id={hotellists} />}
+            <section id='overview'>
+                {hotellists != 0 && <Hotelhead id={hotellists} />}
+            </section>
+            <section id='review'>
+                {hotellists != 0 && <Hotelreview id={hotellists} />}
+            </section>
+            <section id='facilities'>
+                {hotellists != 0 && <Facilities id={hotellists} />}
+            </section>
 
         </div>
     )

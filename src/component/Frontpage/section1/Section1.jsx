@@ -129,9 +129,10 @@ export default function Section1() {
                           <div className="auto-suggestion-list">
                             <ul>
                               {apiData.map((elem, index) => {
+                                // console.log(elem)
                                 const ids = elem.gaiaId;
                                 // console.log(ids)
-                                const listing = '/hotelList/' + ids
+                                const listing = `/hotelList/${elem.regionNames.shortName}/`+`${ids}`
 
 
                                 if (!ids) {

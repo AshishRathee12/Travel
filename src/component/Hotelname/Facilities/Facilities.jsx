@@ -28,7 +28,7 @@ export default function Facilities({ id }) {
                 const facilites = result.summary.amenities.amenities;
                 const name = result.summary.name;
                 setHotelname(name)
-                console.log(result);
+                // console.log(result);
                 setTotalfact(facilites);
 
             } catch (error) {
@@ -44,7 +44,7 @@ export default function Facilities({ id }) {
 
 
     return (
-        <Container fluid="sm">
+        <Container fluid="sm" id='facilities'>
 
             {totalfact.length >= 0 ? (
                 <div className=' facility-main mt-5'>
@@ -53,7 +53,7 @@ export default function Facilities({ id }) {
                         {
                             totalfact.map((elem, index) => {
                                 return (
-                                    <Fragment>
+                                    <Fragment key={index}>
                                         {
                                             elem.contents.map((elem, index) => {
                                                 return (

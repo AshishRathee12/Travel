@@ -4,6 +4,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import './Hotelhead.css'
 import Example from '../Offcanvas/Offcanvas';
 import { FaMedal } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 export default function Hotelhead({ id }) {
@@ -60,14 +61,25 @@ export default function Hotelhead({ id }) {
         <section>
             {lists.summary ? (
                 <Container fluid="sm">
-                    <Row>
+                    <Row className='linked-row mt-4'>
+                        <Col>
+                            <a href="#overview" className='linked-item'>Overview</a>
+                        </Col>
+                        <Col>
+                            <a href="#review" className='linked-item'>Reviews</a>
+                        </Col>
+                        <Col>
+                            <a href="#facilities" className='linked-item'>Facilities</a>
+                        </Col>
+                    </Row>
+                    <Row id='overview'>
                         <Col>
                             <div className="content1 mt-4">
                                 <div className="name">
                                     <h2>{lists.summary.name} </h2>
                                 </div>
                                 <div className="location d-flex">
-                                    <p> <FaLocationDot className='location-icon'/>{lists.summary.location.address.addressLine}</p>
+                                    <p> <FaLocationDot className='location-icon' />{lists.summary.location.address.addressLine}</p>
                                     <p className='show-map-link ms-2' onClick={() => mapopen()}> - show map </p>
                                 </div>
                                 <Row className='head-content'>
