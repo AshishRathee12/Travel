@@ -1,5 +1,5 @@
 .hotel-list-items {
-    border: 2px solid gray;
+    border: 1px solid rgba(190, 189, 189, 0.578);
     border-radius: 10px;
 }
 
@@ -40,17 +40,108 @@
     /* line-height: 1px; */
 }
 
+.number-of-items p {
+    font-size: 25px;
+    font-weight: 800;
+}
+
 .location li::marker {
     color: #80808033;
     margin-right: 2px;
 }
-.hotel-name .name h2{
+
+.hotel-name .name h2 {
     font-size: 25px;
 }
 
 
+.recommand-places ul a {
+    color: black !important;
+    text-decoration: none;
+    display: inline-block;
+}
 
-.loadingarea{
+.recommand-heading {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.recommand-places li {
+    list-style: none;
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: blue;
+    margin-right: 8px;
+}
+.recommand-places li:hover{
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+}
+.recommand-3-col ul{
+    position: sticky;
+    /* overflow: scroll; */
+    top: 0;
+}
+
+.recommand-places {
+    max-height: 60vh;
+    /* border: 1px solid rgba(201, 199, 199, 0.455); */
+    scrollbar-width: thin;
+    overflow-x: hidden;
+}
+
+.inner-sortlist{
+    border: 1px solid gray;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.inner-sortlist:hover{
+    background-color: rgba(234, 231, 231, 0.4);
+}
+.sorting-content p{
+    font-weight: 500;
+}
+.recommand-show{
+    display: block;
+}
+.recommand-hide{
+    display: none;
+}
+.drop-down-content{
+    /* padding: 10px; */
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+}
+.drop-down-content p{
+    cursor: pointer;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+.drop-down-content p:hover{
+    background-color: rgba(234, 231, 231, 0.4);
+}
+.sorting-dropdown{
+    top: 120%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.loadingarea {
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -58,33 +149,32 @@
 }
 
 .containerer {
-  --uib-size: 40px;
-  --uib-color: #003b95;
-  --uib-speed: .9s;
-  --uib-stroke: 5px;
-  --mask-size: calc(var(--uib-size) / 2 - var(--uib-stroke));
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: var(--uib-size);
-  width: var(--uib-size);
-  -webkit-mask: radial-gradient(
-    circle var(--mask-size),
-    transparent 99%,
-    #003b95 100%
-  );
-  mask: radial-gradient(circle var(--mask-size), transparent 99%, #000 100%);
-  background-image: conic-gradient(transparent 25%, var(--uib-color));
-  animation: spin calc(var(--uib-speed)) linear infinite;
-  border-radius: 50%;
+    --uib-size: 40px;
+    --uib-color: #003b95;
+    --uib-speed: .9s;
+    --uib-stroke: 5px;
+    --mask-size: calc(var(--uib-size) / 2 - var(--uib-stroke));
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: var(--uib-size);
+    width: var(--uib-size);
+    -webkit-mask: radial-gradient(circle var(--mask-size),
+            transparent 99%,
+            #003b95 100%);
+    mask: radial-gradient(circle var(--mask-size), transparent 99%, #000 100%);
+    background-image: conic-gradient(transparent 25%, var(--uib-color));
+    animation: spin calc(var(--uib-speed)) linear infinite;
+    border-radius: 50%;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
