@@ -5,6 +5,9 @@ import './HotelList.css';
 import { FaChevronRight } from "react-icons/fa6";
 import { TbArrowsUpDown } from "react-icons/tb";
 import { LuChevronsUpDown } from "react-icons/lu";
+import { CiHeart } from "react-icons/ci";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux for saving/createReducer';
 
 
 export default function HotelList() {
@@ -28,6 +31,24 @@ export default function HotelList() {
 
 
 
+
+  // for save button =
+
+
+
+  const dispatch = useDispatch()
+
+  const saveditems = (elem) => {
+    console.log(elem)
+    // console.log(elem.target)
+    dispatch(addToCart(elem))
+    // setSaved(!saved)
+  }
+
+
+
+
+
   const id = useParams();
   const hotelid = id.id;
   const nameing = id.name;
@@ -47,7 +68,7 @@ export default function HotelList() {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(result)
+      // console.log(result)
       const finalresult = result.properties;
       setHotelsuggest(finalresult);
       setAsiderecom(result.filterMetadata.neighborhoods)
@@ -57,10 +78,6 @@ export default function HotelList() {
   };
 
 
-  // for when we click on reccomand items then the page load automatically 
-  // useEffect(() => {
-  //   setHotelsuggest([])
-  // }, [id])
 
   useEffect(() => {
     list();
@@ -69,8 +86,6 @@ export default function HotelList() {
 
 
   const sortingselection = (elem) => {
-    // console.log(elem)
-    // console.log(elem.target.innerHTML)
     setSorting(elem.target.innerHTML);
     list();
   }
@@ -147,8 +162,14 @@ export default function HotelList() {
                   <Col sm={12} className='hotel-list-items ' key={index}>
                     <Row className='p-2'>
                       <Col sm={5} md={6} className='p-0'>
-                        <div className="list-image">
+                        <div className="list-image position-relative">
                           <img src={roomimg} className='img-fluid'></img>
+                          <div className="save-icon position-absolute top-0">
+                            <span className='' onClick={() => saveditems(elem)}>
+                              {/* <CiHeart size={22} className={`${saved ? "saved-red" : "saved-normal"} icon-background`} enableBackground='red'/> */}
+                              <CiHeart size={22} className='icon-background' enableBackground='red' />
+                            </span>
+                          </div>
                         </div>
                       </Col>
                       <Col sm={7} md={6} className='pe-0'>
