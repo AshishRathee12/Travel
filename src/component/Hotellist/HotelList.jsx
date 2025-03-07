@@ -40,7 +40,7 @@ export default function HotelList() {
   const dispatch = useDispatch()
 
   const saveditems = (elem) => {
-    console.log(elem)
+    // console.log(elem)
     // console.log(elem.target)
     dispatch(addToCart(elem))
  
@@ -60,7 +60,7 @@ export default function HotelList() {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
+      'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };
@@ -153,7 +153,7 @@ export default function HotelList() {
                 </div>
               </div>
               {filteredHotels.map((elem, index) => {
-                console.log(elem)
+                // console.log(elem)
                 const hotelname = '/hotelname/' + elem.name;
                 const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
                 const totalreviews = elem?.reviews?.total || "Nice";

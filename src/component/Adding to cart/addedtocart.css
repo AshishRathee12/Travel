@@ -40,7 +40,7 @@
 }
 
 .hotel-name,.hotel-price,.view,.hotel-delete{
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 tr {

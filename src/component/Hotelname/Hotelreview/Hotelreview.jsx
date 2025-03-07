@@ -16,7 +16,7 @@ export default function Hotelreview({ id }) {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
+      'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };
@@ -29,7 +29,7 @@ export default function Hotelreview({ id }) {
         const response = await fetch(url, options);
         const result = await response.json();
         setReviews(result[0])
-        console.log(result[0])
+        // console.log(result[0])
       } catch (error) {
         console.error(error);
       }

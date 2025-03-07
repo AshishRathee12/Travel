@@ -17,7 +17,7 @@ const saveSlice = createSlice({
             const IteamIndex = state.carts.findIndex((iteam) => iteam.id === action.payload.id);
             if (IteamIndex == -1) {
                 state.carts.push(action.payload);
-                toast.success('Hotel saved.')
+                toast.success('Details saved.')
             } else {
                 toast('Already saved!', {
                     icon: '👍',
@@ -29,7 +29,6 @@ const saveSlice = createSlice({
         // delete singel item form cart  
         deleteFromCart: (state, action) => {
             const data = state.carts.filter((item) => item.id !== action.payload.id);
-            console.log(data);
             state.carts = data;
         },
 

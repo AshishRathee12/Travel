@@ -32,13 +32,16 @@ export default function Section1() {
   const options = {
     method: 'GET',
     headers: {
-      // my api =some limit left 
+      // my api =
       // 'x-rapidapi-key': 'ba5add63eamsh923b36e54af893ep14f893jsn0aaa91cf53f9',
       // disha api limit exceeds
       // 'x-rapidapi-key': 'bd52f8d6a4msh8eb450807febe1bp1b3e5djsn175ae6c6f60b',
       // sonia 
-      'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
+      // 'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
       // parveen 
+
+// vinita =
+      'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };

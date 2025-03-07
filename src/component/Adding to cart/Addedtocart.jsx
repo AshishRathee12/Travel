@@ -5,16 +5,22 @@ import { FaTrashCan } from "react-icons/fa6";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import './addedtocart.css'
 import { Link } from 'react-router-dom';
+import { clearall, deleteFromCart } from '../../redux for saving/createReducer';
 
 export default function Addedtocart() {
 
+    const dispatch = useDispatch();
 
     const carted = useSelector((state) => state.cart.carts);
-    console.log(carted)
 
     const clearcart = () => {
+        dispatch(clearall())
+    }
+
+    const removeitems = (elem) => {
         dispatch(deleteFromCart(elem))
     }
+
 
 
     return (
