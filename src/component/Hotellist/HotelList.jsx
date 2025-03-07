@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, NavLink, Nav } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import './HotelList.css';
+import toast, { Toaster } from 'react-hot-toast';
 import { FaChevronRight } from "react-icons/fa6";
 import { TbArrowsUpDown } from "react-icons/tb";
 import { LuChevronsUpDown } from "react-icons/lu";
@@ -42,6 +43,7 @@ export default function HotelList() {
     console.log(elem)
     // console.log(elem.target)
     dispatch(addToCart(elem))
+ 
     // setSaved(!saved)
   }
 
@@ -119,6 +121,7 @@ export default function HotelList() {
       <Container fluid='xxl' className='mt-5'>
         <Row>
           <Col sm={2}>sdf</Col>
+          <Toaster />
           <Col>
             <Row className=' gy-3'>
               <div className="number-of-items">
@@ -150,6 +153,7 @@ export default function HotelList() {
                 </div>
               </div>
               {filteredHotels.map((elem, index) => {
+                console.log(elem)
                 const hotelname = '/hotelname/' + elem.name;
                 const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
                 const totalreviews = elem?.reviews?.total || "Nice";

@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import HotelList from './component/Hotellist/HotelList';
 import Hotelname from './component/Hotelname/Hotelname';
 import Footer from './component/Footercompo/Footer';
+import Addedtocart from './component/Adding to cart/Addedtocart';
 
 
 function App() {
@@ -28,13 +29,14 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/HotelList/:name/:id' element={<HotelList />}></Route>
         <Route path='/Hotelname/:id' element={<Hotelname />}></Route>
+        <Route path='/Saved-items/' element={<Addedtocart />}></Route>
       </Routes>
 
       {/* <Footer /> */}
       {/* <Row>
      </Row> */}
-     
-     </>
+
+    </>
   )
 }
 
