@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Container, Row, Col, NavLink, Nav } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import './HotelList.css';
@@ -9,6 +9,8 @@ import { LuChevronsUpDown } from "react-icons/lu";
 import { CiHeart } from "react-icons/ci";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux for saving/createReducer';
+import ReactDatePicker from './datepicker/ReactDatePicker';
+import { CounterContext } from './datepicker/ReactDatePicker'
 
 
 export default function HotelList() {
@@ -32,6 +34,12 @@ export default function HotelList() {
 
 
 
+  const { startDate, endDate } = useContext(CounterContext);
+  // console.log(startDate.toISOString().slice(0, 10));
+  const startDate1 = startDate.toISOString().slice(0, 10);
+  const endDate1 = endDate.toISOString().slice(0, 10);
+
+
 
   // for save button =
 
@@ -43,7 +51,7 @@ export default function HotelList() {
     // console.log(elem)
     // console.log(elem.target)
     dispatch(addToCart(elem))
- 
+
     // setSaved(!saved)
   }
 
@@ -55,7 +63,7 @@ export default function HotelList() {
   const hotelid = id.id;
   const nameing = id.name;
 
-  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=2025-05-26&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=2025-05-27`;
+  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${startDate1}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${endDate1}`;
 
   const options = {
     method: 'GET',
@@ -81,6 +89,12 @@ export default function HotelList() {
 
 
 
+  const onDateChange = () => {
+    console.log(startDate, endDate)
+  }
+
+
+
   useEffect(() => {
     list();
   }, [hotelid]);
@@ -93,7 +107,9 @@ export default function HotelList() {
   }
 
 
-
+  useEffect(() => {
+    console.log(startDate)
+  }, [startDate, endDate])
 
 
   // for filter 
@@ -120,8 +136,18 @@ export default function HotelList() {
     return (
       <Container fluid='xxl' className='mt-5'>
         <Row>
-          <Col sm={2}>sdf</Col>
           <Toaster />
+          <div className="search-features">
+            <div className="date-picker">
+              <ReactDatePicker list={list} onDateChange={onDateChange} />
+            </div>
+          </div>
+        </Row>
+        <Row>
+          <Col sm={2}>sdf</Col>
+          <p>{startDate1}</p>
+          <p>{endDate1}</p>
+          {/* {endDate} */}
           <Col>
             <Row className=' gy-3'>
               <div className="number-of-items">

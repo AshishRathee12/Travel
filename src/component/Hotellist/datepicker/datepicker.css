@@ -1,0 +1,12 @@
+.react-datepicker-wrapper input {
+    padding: 10px;
+    border-radius: 10px;
+    width: 210px;
+}
+.search-btn button{
+    padding: 10px;
+    border-radius: 10px;
+}
+.date-content{
+    margin-left: 200px;
+}

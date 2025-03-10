@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { BsFillBuildingsFill } from "react-icons/bs";
 import { TiLocation } from "react-icons/ti";
 import { IoBed } from "react-icons/io5";
+import DatePicker from '../../Hotellist/datepicker/ReactDatePicker';
 
 export default function Section5() {
   return (
