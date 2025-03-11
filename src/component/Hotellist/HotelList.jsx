@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, NavLink, Nav } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import './HotelList.css';
@@ -9,8 +9,10 @@ import { LuChevronsUpDown } from "react-icons/lu";
 import { CiHeart } from "react-icons/ci";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux for saving/createReducer';
-import ReactDatePicker from './datepicker/ReactDatePicker';
-import { CounterContext } from './datepicker/ReactDatePicker'
+import DatePicker from 'react-datepicker';
+import './datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 
 export default function HotelList() {
@@ -24,7 +26,6 @@ export default function HotelList() {
   const [asiderecom, setAsiderecom] = useState([]);
 
 
-
   // for sorting 
   const [sorting, setSorting] = useState("RECOMMENDED");
 
@@ -32,29 +33,31 @@ export default function HotelList() {
 
   const sortinglist = ["RECOMMENDED", "REVIEW", "DISTANCE", "PRICE_LOW_TO_HIGH", "PROPERTY_CLASS", "PRICE_RELEVANT"];
 
+  // for dates 
 
 
-  const { startDate, endDate } = useContext(CounterContext);
-  // console.log(startDate.toISOString().slice(0, 10));
-  const startDate1 = startDate.toISOString().slice(0, 10);
-  const endDate1 = endDate.toISOString().slice(0, 10);
+  const [dateRange, setDateRange] = useState("")
+  const [startDate, setStartDate] = useState(new Date());
+  const maxdate3 = new Date().getTime() + 4 * 24 * 60 * 60 * 1000;
+  const [endDate, setEndDate] = useState(new Date(maxdate3));
+
+  // console.log(startDate, endDate)
+
+
+  // console.log(startDateString, endDateString)
+  const checkin = startDate?.toISOString().slice(0, 10);
+  const checkout = endDate?.toISOString().slice(0, 10);
+
 
 
 
   // for save button =
 
-
-
   const dispatch = useDispatch()
 
   const saveditems = (elem) => {
-    // console.log(elem)
-    // console.log(elem.target)
     dispatch(addToCart(elem))
-
-    // setSaved(!saved)
   }
-
 
 
 
@@ -63,7 +66,7 @@ export default function HotelList() {
   const hotelid = id.id;
   const nameing = id.name;
 
-  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${startDate1}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${endDate1}`;
+  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${checkin}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${checkout}`;
 
   const options = {
     method: 'GET',
@@ -73,8 +76,11 @@ export default function HotelList() {
     }
   };
 
+
+
   const list = async () => {
     setHotelsuggest([])
+    console.log(checkin, checkout)
     try {
       const response = await fetch(url, options);
       const result = await response.json();
@@ -89,9 +95,7 @@ export default function HotelList() {
 
 
 
-  const onDateChange = () => {
-    console.log(startDate, endDate)
-  }
+
 
 
 
@@ -106,10 +110,6 @@ export default function HotelList() {
     list();
   }
 
-
-  useEffect(() => {
-    console.log(startDate)
-  }, [startDate, endDate])
 
 
   // for filter 
@@ -132,6 +132,74 @@ export default function HotelList() {
 
 
 
+
+
+
+
+  // Dates 
+
+
+
+
+
+
+
+
+  const handleDateChange = (dates) => {
+    const [start, end] = dates;
+    // console.log(start, end)
+    setStartDate(start)
+    setEndDate(end);
+    // onDateChange(start,end)
+  }
+  const maxdate2 = new Date().getTime() + 60 * 24 * 60 * 60 * 1000;
+
+
+
+
+
+  useEffect(() => {
+    // update the state herer 
+    if (startDate && endDate) {
+      setDateRange(`Selected date range: ${startDate.toISOString().slice(0, 10)} - ${endDate.toISOString().slice(0, 10)}`);
+    } else if (startDate) {
+      setDateRange(`Selected end date:`);
+    } else {
+      setDateRange("");
+    }
+  }, [startDate, endDate]);
+
+
+
+  const addingdates = () => {
+    if (startDate && endDate) {
+      // console.log(checkin, checkout);
+      list();
+      // console.log(calling())
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   if (hotelsuggest.length > 0) {
     return (
       <Container fluid='xxl' className='mt-5'>
@@ -139,15 +207,30 @@ export default function HotelList() {
           <Toaster />
           <div className="search-features">
             <div className="date-picker">
-              <ReactDatePicker list={list} onDateChange={onDateChange} />
+              <div className='d-flex date-content justify-content-center'>
+              <FaRegCalendarAlt />
+                <DatePicker
+                  // selected={new Date()}
+                  onChange={handleDateChange}
+                  startDate={startDate}
+                  endDate={endDate}
+                  selectsRange
+                  dateFormat="yyyy/MM/dd"
+                  minDate={new Date()}
+                  maxDate={maxdate2}
+                  monthsShown={2}
+                />
+                {/* <p>{dateRange}</p> */}
+                <div className="search-btn">
+                  <button onClick={addingdates}>Search</button>
+                </div>
+              </div>
+              {endDate ? ("") : ("select end date")}
             </div>
           </div>
         </Row>
         <Row>
           <Col sm={2}>sdf</Col>
-          <p>{startDate1}</p>
-          <p>{endDate1}</p>
-          {/* {endDate} */}
           <Col>
             <Row className=' gy-3'>
               <div className="number-of-items">

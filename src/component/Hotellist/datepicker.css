@@ -1,0 +1,32 @@
+.react-datepicker-wrapper input {
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 50px;
+    border-radius: 10px;
+    border: none;
+    /* width: 310px; */
+    text-align: center;
+}
+.react-datepicker-wrapper{
+    border: 4px solid #ffb700 !important;
+    display: flex !important;
+ 
+    justify-content: center;
+    align-items: center;
+}
+.search-btn button{
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #003b95;
+    color: #fff;
+    font-size: 20px;
+}
+.search-btn{
+    background-color: #ffb700;
+    border: 4px solid #ffb700;
+    border-left: 0px;
+}
+.date-content{
+    margin-left: 200px;
+}

@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css'
 import store from './redux for saving/store.jsx';
 import { Provider } from 'react-redux'
-import ReactDatePicker from './component/Hotellist/datepicker/ReactDatePicker.jsx';
 
 
 // import Example from './component/Hotelname/Offcanvas/Offcanvas.jsx';
