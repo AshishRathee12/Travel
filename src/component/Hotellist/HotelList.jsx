@@ -14,17 +14,13 @@ import './datepicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-
 export default function HotelList() {
   const [hotelsuggest, setHotelsuggest] = useState([]);
   const [numberof, setNumberof] = useState(0);
   const [filteredHotels, setFilteredHotels] = useState([]);
 
-
-
   // for recommendation places aside 
   const [asiderecom, setAsiderecom] = useState([]);
-
 
   // for sorting 
   const [sorting, setSorting] = useState("RECOMMENDED");
@@ -48,9 +44,6 @@ export default function HotelList() {
   const checkin = startDate?.toISOString().slice(0, 10);
   const checkout = endDate?.toISOString().slice(0, 10);
 
-
-
-
   // for save button =
 
   const dispatch = useDispatch()
@@ -58,9 +51,6 @@ export default function HotelList() {
   const saveditems = (elem) => {
     dispatch(addToCart(elem))
   }
-
-
-
 
   const id = useParams();
   const hotelid = id.id;
@@ -76,11 +66,9 @@ export default function HotelList() {
     }
   };
 
-
-
   const list = async () => {
     setHotelsuggest([])
-    console.log(checkin, checkout)
+    // console.log(checkin, checkout)
     try {
       const response = await fetch(url, options);
       const result = await response.json();
@@ -93,24 +81,14 @@ export default function HotelList() {
     }
   };
 
-
-
-
-
-
-
   useEffect(() => {
     list();
   }, [hotelid]);
-
-
 
   const sortingselection = (elem) => {
     setSorting(elem.target.innerHTML);
     list();
   }
-
-
 
   // for filter 
   useEffect(() => {
@@ -130,21 +108,6 @@ export default function HotelList() {
     }
   }, [hotelsuggest]);
 
-
-
-
-
-
-
-  // Dates 
-
-
-
-
-
-
-
-
   const handleDateChange = (dates) => {
     const [start, end] = dates;
     // console.log(start, end)
@@ -153,10 +116,6 @@ export default function HotelList() {
     // onDateChange(start,end)
   }
   const maxdate2 = new Date().getTime() + 60 * 24 * 60 * 60 * 1000;
-
-
-
-
 
   useEffect(() => {
     // update the state herer 
@@ -169,8 +128,7 @@ export default function HotelList() {
     }
   }, [startDate, endDate]);
 
-
-
+  
   const addingdates = () => {
     if (startDate && endDate) {
       // console.log(checkin, checkout);
@@ -179,56 +137,39 @@ export default function HotelList() {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  if (hotelsuggest.length > 0) {
-    return (
-      <Container fluid='xxl' className='mt-5'>
-        <Row>
-          <Toaster />
-          <div className="search-features">
-            <div className="date-picker">
-              <div className='d-flex date-content justify-content-center'>
-              <FaRegCalendarAlt />
-                <DatePicker
-                  // selected={new Date()}
-                  onChange={handleDateChange}
-                  startDate={startDate}
-                  endDate={endDate}
-                  selectsRange
-                  dateFormat="yyyy/MM/dd"
-                  minDate={new Date()}
-                  maxDate={maxdate2}
-                  monthsShown={2}
-                />
-                {/* <p>{dateRange}</p> */}
-                <div className="search-btn">
-                  <button onClick={addingdates}>Search</button>
-                </div>
+  return (
+    <Container fluid='xxl' className='mt-3'>
+      <Row className='mb-4'>
+        <Toaster />
+        <div className="search-features">
+          <div className="date-picker">
+            <div className='d-flex date-content justify-content-center'>
+              <div className="calender-icon">
+                <FaRegCalendarAlt size={22}/>
               </div>
+              <DatePicker
+                // selected={new Date()}
+                onChange={handleDateChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                dateFormat="yyyy/MM/dd"
+                minDate={new Date()}
+                maxDate={maxdate2}
+                monthsShown={2}
+              />
+              {/* <p>{dateRange}</p> */}
+              <div className="search-btn">
+                <button onClick={addingdates}>Search</button>
+              </div>
+            </div>
+            <div className="enter-checkoutdate">
               {endDate ? ("") : ("select end date")}
             </div>
           </div>
-        </Row>
+        </div>
+      </Row>
+      {hotelsuggest.length > 0 ? (
         <Row>
           <Col sm={2}>sdf</Col>
           <Col>
@@ -349,13 +290,11 @@ export default function HotelList() {
             <></>
           )}
         </Row>
-      </Container>
-    );
-  } else {
-    return (
-      <div className="loadingarea">
-        <div className="containerer"></div>
-      </div>
-    );
-  }
+      ) : (
+        <div className="loadingarea">
+          <div className="containerer"></div>
+        </div>
+      )}
+    </Container >
+  )
 }

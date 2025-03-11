@@ -62,8 +62,8 @@ export default function Addedtocart() {
                                 </thead>
                                 <tbody>
                                     {carted.map((elem, index) => {
-                                        const ids = elem.regionId
-                                        const listing = `/hotelList/${elem.name}/` + `${ids}`
+                                        // const ids = elem.regionId
+                                        const hotelname = '/hotelname/' + elem.name;
                                         return (
 
                                             <tr key={index}>
@@ -87,7 +87,7 @@ export default function Addedtocart() {
                                                 </td>
                                                 <td >
                                                     <button className='view'>
-                                                        <Link to={listing} as={NavLink}>view
+                                                        <Link to={hotelname} as={NavLink}>view
                                                         </Link></button>
                                                 </td>
                                             </tr>

@@ -59,8 +59,37 @@
 
 }
 
-video {
+.aside img {
     cursor: pointer;
+}
+
+
+.asside-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    top: 34%;
+}
+
+.asside-content p {
+    color: #003b95;
+}
+
+.asside-content button {
+    background-color: #006CE4;
+    font-size: 16px;
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #fff;
+    transition: 0.3s all ease-in;
+}
+
+.asside-content button:hover {
+    background-color: #0552a9;
 }
 
 .amenties {
@@ -121,7 +150,7 @@ video {
     height: 2px;
     top: 100%;
     width: 0%;
-    left:100%;
+    left: 100%;
     right: 100%;
     background-color: #003b95;
 }

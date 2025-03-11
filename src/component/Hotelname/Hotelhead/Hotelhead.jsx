@@ -5,7 +5,10 @@ import './Hotelhead.css'
 import Example from '../Offcanvas/Offcanvas';
 import { FaMedal } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
+import { ImLocation } from "react-icons/im";
+import { CiHeart } from "react-icons/ci";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../redux for saving/createReducer';
 
 export default function Hotelhead({ id }) {
     // console.log(id);
@@ -33,7 +36,7 @@ export default function Hotelhead({ id }) {
                 const result = await response.json();
                 // console.log(result.summary.location.coordinates);
                 // console.log(result.summary.location.coordinates.latitude);
-                // console.log(result);
+                console.log(result);
                 setLists(result);
                 setImageslist(result.propertyGallery.images);
                 setAmenties(result.summary.amenities.topAmenities.items)
@@ -56,6 +59,9 @@ export default function Hotelhead({ id }) {
         const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
         window.open(url, '_blank');
     }
+
+
+
 
     return (
         <section>
@@ -156,15 +162,19 @@ export default function Hotelhead({ id }) {
                                         </Row>
                                     </Col>
                                     <Col sm={3} className='aside '>
-                                        {/* <img src="../images/map.png" alt="" className='img-fluid'onClick={()=>mapopen()}/> */}
-                                        <Row className='position-relative'>
-                                            <video src="../images/map.videos.mp4" autoPlay loop muted className='img-fluid' onClick={() => mapopen()} />
-                                            <div className="asside-content position-absolute top-50">
-                                                View on map
+                                        <Row className='position-relative' onClick={() => mapopen()} >
+                                            <img src="../images/mapimg.jpg" autoPlay loop muted className='img-fluid' />
+                                            <div className="asside-content position-absolute">
+                                                <div className="location-icons-map">
+                                                    <ImLocation color='#006CE4' size={29} />
+                                                </div>
+                                                <button>Show on Map</button>
                                             </div>
                                         </Row>
                                         <Row>
-                                            <>s</>
+                                            <Col>
+
+                                            </Col>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -199,7 +209,7 @@ export default function Hotelhead({ id }) {
             ) : (
                 <Container>
                     <div className="loadingarea">
-                        <div class="containerer"></div>
+                        <div className="containerer"></div>
                     </div>
                 </Container>
             )

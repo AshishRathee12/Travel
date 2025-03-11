@@ -54,7 +54,9 @@
     font-size: 25px;
 }
 
-
+.enter-checkoutdate{
+    text-align: center;
+}
 .recommand-places ul a {
     color: black !important;
     text-decoration: none;

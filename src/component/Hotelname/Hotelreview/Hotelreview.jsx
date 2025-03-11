@@ -41,7 +41,10 @@ export default function Hotelreview({ id }) {
   }, [id])
 
 
+  const number = reviews?.averageOverallRating?.raw;
+  const roundedNumber = number?.toFixed(1);
 
+  console.log(roundedNumber);
 
 
   return (
@@ -56,7 +59,7 @@ export default function Hotelreview({ id }) {
           <Row>
             <Col>
               <div className="overall-rating d-flex align-items-center">
-                <span className='review-rating'>{reviews.averageOverallRating.raw} </span>
+                <span className='review-rating'>{roundedNumber} </span>
                 <p className='m-0 overall-content ms-1'> - Overall Rating</p>
               </div>
             </Col>
