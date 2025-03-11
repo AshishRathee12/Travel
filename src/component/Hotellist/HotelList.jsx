@@ -39,6 +39,11 @@ export default function HotelList() {
 
   // console.log(startDate, endDate)
 
+  // for recommendation-suggestion 
+
+  const [placerecommand, setPlacerecommand] = useState(false)
+
+
 
   // console.log(startDateString, endDateString)
   const checkin = startDate?.toISOString().slice(0, 10);
@@ -128,7 +133,7 @@ export default function HotelList() {
     }
   }, [startDate, endDate]);
 
-  
+
   const addingdates = () => {
     if (startDate && endDate) {
       // console.log(checkin, checkout);
@@ -145,7 +150,7 @@ export default function HotelList() {
           <div className="date-picker">
             <div className='d-flex date-content justify-content-center'>
               <div className="calender-icon">
-                <FaRegCalendarAlt size={22}/>
+                <FaRegCalendarAlt size={22} />
               </div>
               <DatePicker
                 // selected={new Date()}
@@ -171,35 +176,56 @@ export default function HotelList() {
       </Row>
       {hotelsuggest.length > 0 ? (
         <Row>
-          <Col sm={2}>sdf</Col>
+          <Col sm={2} className='d-none d-lg-block'>sdf</Col>
           <Col>
             <Row className=' gy-3'>
               <div className="number-of-items">
                 <p className='m-0'>{nameing}: {numberof} properties found</p>
               </div>
-              <div className="sortlist position-relative">
-                <span className="inner-sortlist d-inline-flex p-2" onClick={() => setShowshort(!showshort)}>
-                  <div className="up-down-icon">
-                    <TbArrowsUpDown className='me-1' />
-                  </div>
-                  <div className="sorting-content">
-                    <p className='m-0'>
-                      Sort by: {sorting}
-                    </p>
-                  </div>
-                  <div className="sort-up-down-icon">
-                    <LuChevronsUpDown className='ms-1' />
-                  </div>
-                </span>
-                {/* <div className="sorting-dropdown position-absolute"> */}
-                <div className={`${showshort ? 'recommand-show' : 'recommand-hide'} sorting-dropdown position-absolute`}>
-                  <div className="drop-down-content">
-                    <div>
-                      {sortinglist.map((elem, index) => {
-                        return <p key={index} onClick={sortingselection}>{elem}</p>
-                      })}
+              <div className='d-flex justify-content-between'>
+                <div className="sortlist position-relative">
+                  <span className="inner-sortlist d-inline-flex p-2" onClick={() => setShowshort(!showshort)}>
+                    <div className="up-down-icon">
+                      <TbArrowsUpDown className='me-1' />
+                    </div>
+                    <div className="sorting-content">
+                      <p className='m-0'>
+                        Sort by: {sorting}
+                      </p>
+                    </div>
+                    <div className="sort-up-down-icon">
+                      <LuChevronsUpDown className='ms-1' />
+                    </div>
+                  </span>
+                  {/* <div className="sorting-dropdown position-absolute"> */}
+                  <div className={`${showshort ? 'recommand-show' : 'recommand-hide'} sorting-dropdown position-absolute`}>
+                    <div className="drop-down-content">
+                      <div>
+                        {sortinglist.map((elem, index) => {
+                          return <p key={index} onClick={sortingselection}>{elem}</p>
+                        })}
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="smallsize-recommand  d-block d-md-none position-relative">
+                  <p className='text-center recommand-heading mt-2 small-recommand-heading px-2' onClick={() => setPlacerecommand(!placerecommand)}>Places near {nameing}</p>
+                  <Col sm={12} className={`${placerecommand ? "recommand-show" : "recommand-hide"} recommand-3-col ms-1 p-0 d-block d-md-none position-absolute xyz-recommand`}>
+                    <div className="recommand-places position-relative mt-3">
+                      <ul className='sticky-ul'>
+                        {asiderecom.map((elem, index) => {
+                          const ids = elem.regionId
+                          const listing = `/hotelList/${elem.name}/` + `${ids}`
+                          return (
+                            <Link as={NavLink} to={listing} key={index}>
+                              <li >{elem.name}</li>
+                            </Link>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  </Col>
                 </div>
               </div>
               {filteredHotels.map((elem, index) => {
@@ -269,32 +295,36 @@ export default function HotelList() {
               })}
             </Row>
           </Col>
-          {asiderecom.length > 0 ? (
-            <Col sm={3} className='recommand-3-col ms-1 p-0'>
-              <p className='text-center recommand-heading mt-5'>Places near {nameing}</p>
-              <div className="recommand-places mt-4 position-relative mt-5">
-                <ul className='sticky-ul'>
-                  {asiderecom.map((elem, index) => {
-                    const ids = elem.regionId
-                    const listing = `/hotelList/${elem.name}/` + `${ids}`
-                    return (
-                      <Link as={NavLink} to={listing} key={index}>
-                        <li >{elem.name}</li>
-                      </Link>
-                    )
-                  })}
-                </ul>
-              </div>
-            </Col>
-          ) : (
-            <></>
-          )}
-        </Row>
+          {
+            asiderecom.length > 0 ? (<>
+              <Col sm={3} className='recommand-3-col ms-1 p-0 d-none d-md-block'>
+                <p className='text-center recommand-heading mt-5'>Places near {nameing}</p>
+                <div className="recommand-places mt-4 position-relative mt-5">
+                  <ul className='sticky-ul'>
+                    {asiderecom.map((elem, index) => {
+                      const ids = elem.regionId
+                      const listing = `/hotelList/${elem.name}/` + `${ids}`
+                      return (
+                        <Link as={NavLink} to={listing} key={index}>
+                          <li >{elem.name}</li>
+                        </Link>
+                      )
+                    })}
+                  </ul>
+                </div>
+              </Col>
+            </>
+            ) : (
+              <></>
+            )
+          }
+        </Row >
       ) : (
         <div className="loadingarea">
           <div className="containerer"></div>
         </div>
-      )}
+      )
+      }
     </Container >
   )
 }

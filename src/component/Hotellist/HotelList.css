@@ -54,9 +54,10 @@
     font-size: 25px;
 }
 
-.enter-checkoutdate{
+.enter-checkoutdate {
     text-align: center;
 }
+
 .recommand-places ul a {
     color: black !important;
     text-decoration: none;
@@ -112,12 +113,31 @@
 }
 
 .recommand-show {
-    display: block;
+    display: block !important;
+    z-index: 999;
+
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+.small-recommand-heading {
+    font-size: 14px;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+
+.recommand-3-col {
+    background-color: #fff;
 }
 
 .recommand-hide {
-    display: none;
+    display: none !important;
 }
+
+.xyz-recommand {
+    right: 100%;
+}
+
 
 .drop-down-content {
     /* padding: 10px; */
