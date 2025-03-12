@@ -14,6 +14,12 @@ import './datepicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaRegCalendarAlt } from "react-icons/fa";
 
+import { Range } from "react-range";
+
+
+
+
+
 export default function HotelList() {
   const [hotelsuggest, setHotelsuggest] = useState([]);
   const [numberof, setNumberof] = useState(0);
@@ -43,6 +49,13 @@ export default function HotelList() {
 
   const [placerecommand, setPlacerecommand] = useState(false)
 
+  // for range selection 
+  const [values, setValues] = React.useState([1000]);
+
+
+
+
+
 
 
   // console.log(startDateString, endDateString)
@@ -61,7 +74,7 @@ export default function HotelList() {
   const hotelid = id.id;
   const nameing = id.name;
 
-  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=10&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${checkin}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=500&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${checkout}`;
+  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=500&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${checkin}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=${values}&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${checkout}`;
 
   const options = {
     method: 'GET',
@@ -77,7 +90,6 @@ export default function HotelList() {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      // console.log(result)
       const finalresult = result.properties;
       setHotelsuggest(finalresult);
       setAsiderecom(result.filterMetadata.neighborhoods)
@@ -142,6 +154,19 @@ export default function HotelList() {
     }
   }
 
+
+
+
+  const changeprice = (values) => {
+    setValues(values)
+    setTimeout(() => {
+      list();
+    }, 2000);
+  }
+
+
+
+
   return (
     <Container fluid='xxl' className='mt-3'>
       <Row className='mb-4'>
@@ -153,7 +178,6 @@ export default function HotelList() {
                 <FaRegCalendarAlt size={22} />
               </div>
               <DatePicker
-                // selected={new Date()}
                 onChange={handleDateChange}
                 startDate={startDate}
                 endDate={endDate}
@@ -176,7 +200,57 @@ export default function HotelList() {
       </Row>
       {hotelsuggest.length > 0 ? (
         <Row>
-          <Col sm={2} className='d-none d-lg-block'>sdf</Col>
+          <Col sm={2} className='d-none d-lg-block'>
+            <div className="filter-content">
+              <div className="filter-heading">
+                <p>Your budget (per night)</p>
+              </div>
+              <div className="filter-price-range">
+                <p>₹ 400 </p>- <p> {values[0]}</p>
+              </div>
+              <div className="price-range-slider">
+
+                <Range
+                  label="Select your value"
+                  step={100}
+                  min={500}
+                  max={5000}
+                  values={values}
+                  onChange={(values) => changeprice(values)}
+                  renderTrack={({ props, children }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: "6px",
+                        width: "100%",
+                        backgroundColor: "#0d6efd",
+                      }}
+                    >
+                      {children}
+                    </div>
+                  )}
+                  renderThumb={({ props }) => (
+                    <div className='range-icon'
+                      {...props}
+                      key={props.key}
+                      style={{
+                        ...props.style,
+                        top: "0%",
+                        borderRadius: "50%",
+                        height: "20px",
+                        width: "20px",
+                        backgroundColor: "#0d6efd",
+                      }}
+                    />
+                  )}
+                />
+                <p>
+                  Selected value: {values[0]}
+                </p>
+              </div>
+            </div>
+          </Col>
           <Col>
             <Row className=' gy-3'>
               <div className="number-of-items">
