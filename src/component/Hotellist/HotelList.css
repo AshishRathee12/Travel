@@ -94,7 +94,7 @@
 .recommand-places {
     max-height: 60vh;
     /* border: 1px solid rgba(201, 199, 199, 0.455); */
-    scrollbar-width: thin;
+    /* scrollbar-width: thin; */
     overflow-x: hidden;
 }
 
@@ -115,7 +115,6 @@
 .recommand-show {
     display: block !important;
     z-index: 999;
-
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
@@ -179,6 +178,29 @@
 .saved-normal {
     background-color: #fff; */
 /* } */
+
+.filter-title{
+    border-bottom: 1px solid rgba(190, 189, 189, 0.578);
+}
+.filter-title p{
+    font-size: 18px;
+    font-weight: 700;
+}
+.filter-page{
+    border: 1px solid rgba(128, 128, 128, 0.542);
+    border-radius: 5px;
+    padding: 20px 5px;
+}
+.filter-price-heading p{
+    font-size: 15px;
+    font-weight: 700;
+}
+.filter-price-range p{
+    font-size: 14px;
+    font-weight:300;
+}
+
+
 
 
 

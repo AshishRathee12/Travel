@@ -58,7 +58,7 @@ export default function HotelList() {
 
 
 
-  // console.log(startDateString, endDateString)
+  // converting date into redable format 
   const checkin = startDate?.toISOString().slice(0, 10);
   const checkout = endDate?.toISOString().slice(0, 10);
 
@@ -74,7 +74,7 @@ export default function HotelList() {
   const hotelid = id.id;
   const nameing = id.name;
 
-  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=500&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${checkin}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=${values}&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${checkout}`;
+  const url = `https://hotels-com-provider.p.rapidapi.com/v2/hotels/search?amenities=WIFI%2CPARKING&meal_plan=FREE_BREAKFAST&available_filter=SHOW_AVAILABLE_ONLY&price_min=700&payment_type=PAY_LATER%2CFREE_CANCELLATION&star_rating_ids=3%2C4%2C5&guest_rating_min=8&children_ages=4%2C0%2C15&checkin_date=${checkin}&locale=en_IN&adults_number=1&sort_order=${sorting}&page_number=1&domain=IN&price_max=${values}&region_id=${hotelid}&lodging_type=HOTEL%2CHOSTEL%2CAPART_HOTEL&checkout_date=${checkout}`;
 
   const options = {
     method: 'GET',
@@ -86,13 +86,12 @@ export default function HotelList() {
 
   const list = async () => {
     setHotelsuggest([])
-    // console.log(checkin, checkout)
     try {
       const response = await fetch(url, options);
       const result = await response.json();
       const finalresult = result.properties;
       setHotelsuggest(finalresult);
-      setAsiderecom(result.filterMetadata.neighborhoods)
+      setAsiderecom(result.filterMetadata?.neighborhoods)
     } catch (error) {
       console.error(error);
     }
@@ -102,19 +101,17 @@ export default function HotelList() {
     list();
   }, [hotelid]);
 
-  const sortingselection = (elem) => {
-    setSorting(elem.target.innerHTML);
-    list();
-  }
 
   // for filter 
   useEffect(() => {
-    if (hotelsuggest.length > 0) {
+    if (hotelsuggest !== undefined && hotelsuggest !== null && hotelsuggest.length > 0) {
       const filteredHotels = hotelsuggest.filter((elem) => {
+        // console.log(elem);
         return (
           elem?.propertyImage?.image?.url &&
           elem?.reviews?.total &&
           elem?.reviews?.score &&
+          elem?.price?.lead?.amount <= values &&
           // elem?.availability.minRoomsLeft &&
           elem?.destinationInfo?.distanceFromDestination?.value
           // elem?.neighborhood?.name
@@ -123,7 +120,10 @@ export default function HotelList() {
       setFilteredHotels(filteredHotels);
       setNumberof(filteredHotels.length);
     }
-  }, [hotelsuggest]);
+  }, [hotelsuggest, values]);
+
+
+  // when dates changes in dateRange 
 
   const handleDateChange = (dates) => {
     const [start, end] = dates;
@@ -146,6 +146,19 @@ export default function HotelList() {
   }, [startDate, endDate]);
 
 
+
+
+  // for sorting 
+
+  const sortingselection = (elem) => {
+    setSorting(elem.target.innerHTML);
+    list();
+  }
+
+
+
+  // for date selction 
+
   const addingdates = () => {
     if (startDate && endDate) {
       // console.log(checkin, checkout);
@@ -155,13 +168,17 @@ export default function HotelList() {
   }
 
 
-
+  // for price range 
+  let timeoutId;
 
   const changeprice = (values) => {
     setValues(values)
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       list();
     }, 2000);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
   }
 
 
@@ -198,56 +215,57 @@ export default function HotelList() {
           </div>
         </div>
       </Row>
-      {hotelsuggest.length > 0 ? (
+      {hotelsuggest?.length > 0 ? (
         <Row>
           <Col sm={2} className='d-none d-lg-block'>
-            <div className="filter-content">
-              <div className="filter-heading">
-                <p>Your budget (per night)</p>
+            <div className="filter-page mt-5">
+              <div className="filter-title">
+                <p className='mb-3'> Filter by :</p>
               </div>
-              <div className="filter-price-range">
-                <p>₹ 400 </p>- <p> {values[0]}</p>
-              </div>
-              <div className="price-range-slider">
-
-                <Range
-                  label="Select your value"
-                  step={100}
-                  min={500}
-                  max={5000}
-                  values={values}
-                  onChange={(values) => changeprice(values)}
-                  renderTrack={({ props, children }) => (
-                    <div
-                      {...props}
-                      style={{
-                        ...props.style,
-                        height: "6px",
-                        width: "100%",
-                        backgroundColor: "#0d6efd",
-                      }}
-                    >
-                      {children}
-                    </div>
-                  )}
-                  renderThumb={({ props }) => (
-                    <div className='range-icon'
-                      {...props}
-                      key={props.key}
-                      style={{
-                        ...props.style,
-                        top: "0%",
-                        borderRadius: "50%",
-                        height: "20px",
-                        width: "20px",
-                        backgroundColor: "#0d6efd",
-                      }}
-                    />
-                  )}
-                />
-                <p>
-                  Selected value: {values[0]}
-                </p>
+              <div className="filter-price">
+                <div className="filter-price-heading pt-4">
+                  <p>Your budget (per night)</p>
+                </div>
+                <div className="filter-price-range d-flex">
+                  <p>₹ 400 </p> - <p> ₹ {values[0]}</p>
+                </div>
+                <div className="price-range-slider">
+                  <Range
+                    label="Select your value"
+                    step={100}
+                    min={500}
+                    max={5000}
+                    values={values}
+                    onChange={(values) => changeprice(values)}
+                    renderTrack={({ props, children }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: "6px",
+                          width: "100%",
+                          backgroundColor: "#0d6efd",
+                        }}
+                      >
+                        {children}
+                      </div>
+                    )}
+                    renderThumb={({ props }) => (
+                      <div className='range-icon'
+                        {...props}
+                        key={props.key}
+                        style={{
+                          ...props.style,
+                          top: "0%",
+                          borderRadius: "50%",
+                          height: "20px",
+                          width: "20px",
+                          backgroundColor: "#0d6efd",
+                        }}
+                      />
+                    )}
+                  />
+                </div>
               </div>
             </div>
           </Col>

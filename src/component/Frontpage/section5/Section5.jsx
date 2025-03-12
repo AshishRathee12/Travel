@@ -72,7 +72,7 @@ export default function Section5() {
           </Col>
           <Col md={4}  className='offset-md-1 col-8 mt-4 mt-md-0'>
           <div className="world-img text-center">
-            <img src="../images/world-map.webp" alt="" className='img-fluid'/>
+            <img src="../images/world-map.webp" alt="worldmap" className='img-fluid' />
           </div>
           </Col>
         </Row>
@@ -82,7 +82,7 @@ export default function Section5() {
           <Col md={4}>
             <div className="inner-info">
               <div className="info-img">
-                <img src='../images/facts1.svg' className='img-fluid'></img>
+                <img src='../images/facts1.svg' className='img-fluid' alt='fact1'></img>
               </div>
               <div className="hot-deals text-center">
                 <div className="hot-deals-head">
@@ -95,7 +95,7 @@ export default function Section5() {
           <Col md={4}>
             <div className="inner-info">
               <div className="info-img">
-                <img src='../images/facts2.svg' className='img-fluid'></img>
+                <img src='../images/facts2.svg' className='img-fluid' alt='fact2'></img>
               </div>
               <div className="hot-deals text-center">
                 <div className="hot-deals-head">
@@ -108,7 +108,7 @@ export default function Section5() {
           <Col md={4}>
             <div className="inner-info">
               <div className="info-img">
-                <img src='../images/facts3.svg' className='img-fluid'></img>
+                <img src='../images/facts3.svg' className='img-fluid' alt='fact3'></img>
               </div>
               <div className="hot-deals text-center">
                 <div className="hot-deals-head">

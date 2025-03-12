@@ -31,8 +31,8 @@ function CollapsibleExample() {
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container fluid='xl' className='p-0'>
-        <Navbar.Brand href="/" className='col-md-4'>
-          <img src='/images/logo.png' className='logo-img'></img>
+        <Navbar.Brand href="/" className='col-md-4' title="Visit example website">
+          <img src='/images/logo.png' className='logo-img' alt='logo here'></img>
         </Navbar.Brand>
         {/* <Navbar.Toggle aria-controls="responsive-navbar-nav"  className='order-4'/> */}
         <Nav className="offset-md-5 offset-sm-4 offset-3">
