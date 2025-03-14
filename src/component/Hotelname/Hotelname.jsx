@@ -15,7 +15,7 @@ export default function Hotelname() {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
+            'x-rapidapi-key': '65585d9e15mshd5c370d9d7ed9b9p1dd305jsn98f4ca42270f',
             'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
         }
     };

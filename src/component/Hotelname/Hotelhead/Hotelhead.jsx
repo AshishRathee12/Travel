@@ -23,7 +23,7 @@ export default function Hotelhead({ id }) {
     const options2 = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
+            'x-rapidapi-key': '65585d9e15mshd5c370d9d7ed9b9p1dd305jsn98f4ca42270f',
             'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
         }
     };
@@ -36,7 +36,7 @@ export default function Hotelhead({ id }) {
                 const result = await response.json();
                 // console.log(result.summary.location.coordinates);
                 // console.log(result.summary.location.coordinates.latitude);
-                console.log(result);
+                // console.log(result);
                 setLists(result);
                 setImageslist(result.propertyGallery.images);
                 setAmenties(result.summary.amenities.topAmenities.items)
@@ -181,16 +181,16 @@ export default function Hotelhead({ id }) {
                                 <Row className='mt-4'>
                                     {amenties.map((elem, index) => {
                                         return (
-                                            <Col key={index} lg={2} sm={3} className=''>
-                                                <div className="amenties">
+                                            <Col key={index} lg={2} sm={3} className='col-6'>
+                                                <div className="amenties ">
                                                     <p className='m-0'>{elem.text}</p>
                                                 </div>
                                             </Col>
                                         )
                                     })}
                                 </Row>
-                                <Row className='mt-4'>
-                                    <Col sm={9}>
+                                <Row className='mt-lg-4 mt-1'>
+                                    <Col lg={9}>
                                         <p className='about-property'>{lists.summary.location.whatsAround.editorial.content}</p>
                                         <div className="property-tagline">
                                             <p><FaMedal className='me-2' />{lists.summary.tagline}</p>

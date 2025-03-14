@@ -66,6 +66,17 @@ function CollapsibleExample() {
         </Nav>
         {/* </Navbar.Collapse> */}
       </Container>
+      <Container fluid='xl' className='p-0'>
+        <Col>
+          <div className="stays">
+            <div className="stays-box">
+              <button>
+                <Link>stays</Link>
+              </button>
+            </div>
+          </div>
+        </Col>
+      </Container>
     </Navbar>
   );
 }

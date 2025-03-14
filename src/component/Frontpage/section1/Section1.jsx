@@ -49,6 +49,9 @@ export default function Section1() {
   );
 
 
+  const ErrorFallback = () => {
+    return <div>Error occured</div>;
+  };
 
 
 
@@ -71,6 +74,9 @@ export default function Section1() {
   const [apiData, setApiData] = useState([]);
 
 
+  // Add a state variable to track the loading state
+  const [isLoading, setIsLoading] = useState(false);
+
 
 
 
@@ -87,7 +93,9 @@ export default function Section1() {
       // parveen 
 
       // vinita =
-      'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
+      // 'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
+
+      'x-rapidapi-key': '65585d9e15mshd5c370d9d7ed9b9p1dd305jsn98f4ca42270f',
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };
@@ -96,18 +104,19 @@ export default function Section1() {
 
 
   const adddata = async () => {
-
-
+    setIsLoading(true);
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      // console.log(result)
+      console.log(result)
       const resultdata = result.data;
       // console.log(resultdata)
       setApiData(resultdata)
       setSuggestion(true);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false); // Set loading state to false when fetch completes
     }
   }
 
@@ -120,6 +129,7 @@ export default function Section1() {
 
 
   const searchhotel = (e) => {
+    setSuggestion(false)
     e.preventDefault();
     if (hoteldata != '') {
       if (navigator.onLine === true) {
@@ -142,77 +152,88 @@ export default function Section1() {
 
 
   return (
-    <div className='front-image'>
-      <div >
-        {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          // onClose={handleClose}
-          message="Check your internet connection"
-          action={action}
-        />
-      </div>
+    <ErrorBoundary fallback={<>Error occured</>}>
+      <div className='front-image'>
+        <div >
+          {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            // onClose={handleClose}
+            message="Check your internet connection"
+            action={action}
+          />
+        </div>
 
-      <div className="middle-content">
-        <Container className=' '>
-          <Row>
-            <div className="search-details">
-              <Col className='mb-4'>
-                <div className="search-heading">
-                  <h1 className='text-center'>Find the right hotel today</h1>
-                </div>
-              </Col>
-              <Col>
-                <div className="search-form">
-                  <form >
-                    <Row className='justify-content-center align-items-center d-flex '>
-                      <div className="row-main d-md-flex justify-content-center align-items-center">
-                        <Col xs={12} md={9} >
-                          <div className="search-input-field d-flex justify-content-center align-items-center">
-                            <IoSearch size={26} className='' />
-                            <input type="text" className="form-control" placeholder="Enter destination or hotel name" value={search} onChange={searchforhotel} />
+        <div className="middle-content">
+          <Container className=' '>
+            <Row>
+              <div className="search-details">
+                <Col className='mb-4'>
+                  <div className="search-heading">
+                    <h1 className='text-center'>Find the right hotel today</h1>
+                  </div>
+                </Col>
+                <Col>
+                  <div className="search-form">
+                    <form >
+                      <Row className='justify-content-center align-items-center d-flex '>
+                        <div className="row-main d-md-flex justify-content-center align-items-center">
+                          <Col xs={12} md={9} >
+                            <div className="search-input-field d-flex justify-content-center align-items-center">
+                              <IoSearch size={26} className='' />
+                              <input type="text" className="form-control" placeholder="Enter destination or hotel name" value={search} onChange={searchforhotel} />
+                            </div>
+                          </Col>
+                          <Col xs={12} md={3}>
+                            <div className="form-btn">
+                              <button type="submit" className="" onClick={searchhotel}>Search hotels <FaArrowRight /></button>
+                            </div>
+                          </Col>
+                        </div>
+
+                        <div className={`${suggestion ? 'sugg-show' : 'sugg-hide'} auto-suggestion`}>
+                          <Col>
+                            <div className="auto-suggestion-list">
+                              {apiData && apiData.length > 0 ? (
+                                <ul>
+                                  {apiData.map((elem, index) => {
+                                    // console.log(elem)
+                                    const ids = elem.gaiaId;
+                                    // console.log(ids)
+                                    const listing = `/hotelList/${elem.regionNames.shortName}/` + `${ids}`
+                                    if (!ids) {
+                                      return null
+                                    } else {
+                                      return (
+                                        <Link as={NavLink} to={listing} key={index}>
+                                          <li >{elem.regionNames.shortName} </li>
+                                        </Link>
+                                      )
+                                    }
+                                  })}
+                                </ul>
+                              ) : (
+                                <div>No data available</div>
+                              )}
+                            </div>
+                          </Col>
+                        </div>
+
+                        {isLoading && (
+                          <div className="loadingarea loadingdata-icon">
+                            <div className="containerer"></div>
                           </div>
-                        </Col>
-                        <Col xs={12} md={3}>
-                          <div className="form-btn">
-                            <button type="submit" className="" onClick={searchhotel}>Search hotels <FaArrowRight /></button>
-                          </div>
-                        </Col>
-                      </div>
-                      <div className={`${suggestion ? 'sugg-show' : 'sugg-hide'} auto-suggestion`}>
-                        <Col>
-                          <div className="auto-suggestion-list">
-                            <ErrorBoundary fallback={<>Error occured</>}>
-                              <ul>
-                                {apiData.map((elem, index) => {
-                                  // console.log(elem)
-                                  const ids = elem.gaiaId;
-                                  // console.log(ids)
-                                  const listing = `/hotelList/${elem.regionNames.shortName}/` + `${ids}`
-                                  if (!ids) {
-                                    return null
-                                  } else {
-                                    return (
-                                      <Link as={NavLink} to={listing} key={index}>
-                                        <li >{elem.regionNames.shortName} </li>
-                                      </Link>
-                                    )
-                                  }
-                                })}
-                              </ul>
-                            </ErrorBoundary>
-                          </div>
-                        </Col>
-                      </div>
-                    </Row>
-                  </form>
-                </div>
-              </Col>
-            </div>
-          </Row>
-        </Container>
+                        )}
+                      </Row>
+                    </form>
+                  </div>
+                </Col>
+              </div>
+            </Row>
+          </Container>
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   )
 }

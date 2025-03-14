@@ -25,7 +25,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 export default function HotelList() {
 
-// for checking if user is online or not 
+  // for checking if user is online or not and show alert if not
   const [open, setOpen] = React.useState(false);
 
 
@@ -40,9 +40,6 @@ export default function HotelList() {
 
   const action = (
     <React.Fragment>
-      {/* <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button> */}
       <IconButton
         size="small"
         aria-label="close"
@@ -108,11 +105,13 @@ export default function HotelList() {
 
   const dispatch = useDispatch()
 
+
+  // applied validation that if internet is ON then the add to cart works 
   const saveditems = (elem) => {
-    if(navigator.onLine===false){
+    if (navigator.onLine === false) {
       setOpen(true);
     }
-    if(navigator.onLine===true){
+    if (navigator.onLine === true) {
       dispatch(addToCart(elem))
     }
   }
@@ -124,7 +123,7 @@ export default function HotelList() {
     console.log("online")
   }
   if (navigator.onLine === false) {
-   console.log("offline")
+    console.log("offline")
   }
 
 
@@ -137,7 +136,7 @@ export default function HotelList() {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
+      'x-rapidapi-key': '65585d9e15mshd5c370d9d7ed9b9p1dd305jsn98f4ca42270f',
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
   };
@@ -155,6 +154,9 @@ export default function HotelList() {
     }
   };
 
+
+
+  // fetching the data whent the id changes 
   useEffect(() => {
     list();
   }, [hotelid]);
@@ -164,7 +166,6 @@ export default function HotelList() {
   useEffect(() => {
     if (hotelsuggest !== undefined && hotelsuggest !== null && hotelsuggest.length > 0) {
       const filteredHotels = hotelsuggest.filter((elem) => {
-        // console.log(elem);
         return (
           elem?.propertyImage?.image?.url &&
           elem?.reviews?.total &&
@@ -185,10 +186,8 @@ export default function HotelList() {
 
   const handleDateChange = (dates) => {
     const [start, end] = dates;
-    // console.log(start, end)
     setStartDate(start)
     setEndDate(end);
-    // onDateChange(start,end)
   }
   const maxdate2 = new Date().getTime() + 60 * 24 * 60 * 60 * 1000;
 
@@ -242,18 +241,24 @@ export default function HotelList() {
 
 
 
+  // reloading the page 
+  const reload = () => {
+    window.location.reload(false)
+  }
+
+
   return (
     <Container fluid='xxl' className='mt-3'>
-       <div >
-              {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
-              <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                // onClose={handleClose}
-                message="Check your internet connection"
-                action={action}
-              />
-            </div>
+      <div >
+        {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          // onClose={handleClose}
+          message="Check your internet connection"
+          action={action}
+        />
+      </div>
       <Row className='mb-4'>
         <Toaster />
         <div className="search-features">
@@ -388,71 +393,76 @@ export default function HotelList() {
                   </Col>
                 </div>
               </div>
-              {filteredHotels.map((elem, index) => {
-                // console.log(elem)
-                const hotelname = '/hotelname/' + elem.name;
-                const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
-                const totalreviews = elem?.reviews?.total || "Nice";
-                const reviewscore = elem?.reviews?.score || "";
-                const roomleft = elem?.availability.minRoomsLeft;
-                const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
-                const neighborhood = elem?.neighborhood?.name || "Not found";
-                return (
-                  // <Col md={10} lg={9} xl={7} sm={12} className='hotel-list-items offset-lg-3 offset-md-2' key={index}>
-                  <Col sm={12} className='hotel-list-items ' key={index}>
-                    <Row className='p-2'>
-                      <Col sm={5} md={6} className='p-0'>
-                        <div className="list-image position-relative">
-                          <img src={roomimg} className='img-fluid'></img>
-                          <div className="save-icon position-absolute top-0">
-                            <span className='' onClick={() => saveditems(elem)}>
-                              {/* <CiHeart size={22} className={`${saved ? "saved-red" : "saved-normal"} icon-background`} enableBackground='red'/> */}
-                              <CiHeart size={22} className='icon-background' enableBackground='red' />
-                            </span>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col sm={7} md={6} className='pe-0'>
-                        <div className="hotel-list-content">
-                          <div className="hotel-name">
-                            <div className="hotel-description d-flex justify-content-between">
-                              <div className="name">
-                                <h2>{elem.name}</h2>
-                              </div>
-                              <div className="reviews-box d-flex">
-                                <div className="score me-2">
-                                  <p className='mb-0 review-heading'>Review Score</p>
-                                  <p className='mb-0 total-review text-end'>{totalreviews} Reviews</p>
-                                </div>
-                                <div className="rating">
-                                  <p className='mb-0'>{reviewscore}</p>
-                                </div>
+              {
+                filteredHotels && filteredHotels.length > 0 ? (
+                  filteredHotels.map((elem, index) => {
+                    // console.log(elem)
+                    const hotelname = '/hotelname/' + elem.name;
+                    const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
+                    const totalreviews = elem?.reviews?.total || "Nice";
+                    const reviewscore = elem?.reviews?.score || "";
+                    const roomleft = elem?.availability.minRoomsLeft;
+                    const distance = elem?.destinationInfo?.distanceFromDestination?.value || " Couldn't found";
+                    const neighborhood = elem?.neighborhood?.name || "Not found";
+                    return (
+                      // <Col md={10} lg={9} xl={7} sm={12} className='hotel-list-items offset-lg-3 offset-md-2' key={index}>
+                      <Col sm={12} className='hotel-list-items ' key={index}>
+                        <Row className='p-2'>
+                          <Col sm={5} md={6} className='p-0'>
+                            <div className="list-image position-relative">
+                              <img src={roomimg} className='img-fluid'></img>
+                              <div className="save-icon position-absolute top-0">
+                                <span className='' onClick={() => saveditems(elem)}>
+                                  <CiHeart size={22} className='icon-background' enableBackground='red' />
+                                </span>
                               </div>
                             </div>
-                            <div className="location d-flex mt-2">
-                              <a href="http://" target="_blank" rel="noopener noreferrer" className=''>{neighborhood}</a>
-                              <ul className='mb-0 mt-1 p-0 ps-3'>
-                                <li className='location-distance'>{distance}Km from center</li>
-                              </ul>
+                          </Col>
+                          <Col sm={7} md={6} className='pe-0'>
+                            <div className="hotel-list-content">
+                              <div className="hotel-name">
+                                <div className="hotel-description d-flex justify-content-between">
+                                  <div className="name">
+                                    <h2>{elem.name}</h2>
+                                  </div>
+                                  <div className="reviews-box d-flex">
+                                    <div className="score me-2">
+                                      <p className='mb-0 review-heading'>Review Score</p>
+                                      <p className='mb-0 total-review text-end'>{totalreviews} Reviews</p>
+                                    </div>
+                                    <div className="rating">
+                                      <p className='mb-0'>{reviewscore}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="location d-flex mt-2">
+                                  <a href="http://" target="_blank" rel="noopener noreferrer" className=''>{neighborhood}</a>
+                                  <ul className='mb-0 mt-1 p-0 ps-3'>
+                                    <li className='location-distance'>{distance}Km from center</li>
+                                  </ul>
+                                </div>
+                                <div className="availability mt-2">
+                                  <p>{roomleft} left</p>
+                                </div>
+                              </div>
+                              <div className="price">
+                                <p className='rate'>{elem.mapMarker.label}</p>
+                                <div className="available-button">
+                                  <Link as={NavLink} to={hotelname}>
+                                    <button className='btn btn-primary'>See Availability <FaChevronRight /></button>
+                                  </Link>
+                                </div>
+                              </div>
                             </div>
-                            <div className="availability mt-2">
-                              <p>{roomleft} left</p>
-                            </div>
-                          </div>
-                          <div className="price">
-                            <p className='rate'>{elem.mapMarker.label}</p>
-                            <div className="available-button">
-                              <Link as={NavLink} to={hotelname}>
-                                <button className='btn btn-primary'>See Availability <FaChevronRight /></button>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       </Col>
-                    </Row>
-                  </Col>
-                );
-              })}
+                    );
+                  })
+                ) : (
+                  <button onClick={reload}>Reload</button>
+                )
+              }
             </Row>
           </Col>
           {
