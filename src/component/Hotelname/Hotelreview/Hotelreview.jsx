@@ -49,7 +49,7 @@ export default function Hotelreview({ id }) {
 
   return (
     <Container fluid="sm review-container">
-      {reviews.averageOverallRating ? (
+      {reviews?.averageOverallRating ? (
         <Fragment>
           <Row>
             <Col>

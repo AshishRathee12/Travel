@@ -11,6 +11,7 @@ import HotelList from './component/Hotellist/HotelList';
 import Hotelname from './component/Hotelname/Hotelname';
 import Footer from './component/Footercompo/Footer';
 import Addedtocart from './component/Adding to cart/Addedtocart';
+import ActionAlerts from './component/Networkcompo/TransitionAlerts';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             Please note that we currently only provide Indian hotel data.
           </Alert>
         </Stack>
+        <ActionAlerts />
       </Row>
 
       <Routes>

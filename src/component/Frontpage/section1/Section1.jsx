@@ -4,9 +4,54 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { FaArrowRight } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { Link, NavLink } from 'react-router-dom';
+// import ErrorBoundary1 from './Errorboundries1';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
+
+
 
 
 export default function Section1() {
+
+  // for checking if user is online or not 
+
+  const [open, setOpen] = React.useState(false);
+
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      {/* <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button> */}
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+
+
+
+
 
   // In React, state updates are asynchronous. When you call setSearch(inputtext) in the searchforhotel function, it doesn't update the search state immediately. Instead, it schedules an update for the next render cycle.
 
@@ -28,6 +73,7 @@ export default function Section1() {
 
 
 
+
   const url = `https://hotels-com-provider.p.rapidapi.com/v2/regions?query=${hoteldata}&domain=IN&locale=en_IN`;
   const options = {
     method: 'GET',
@@ -40,7 +86,7 @@ export default function Section1() {
       // 'x-rapidapi-key': 'f288f4fb1cmshadfa18f64a886e8p1b155bjsn407b3d6b2b7f',
       // parveen 
 
-// vinita =
+      // vinita =
       'x-rapidapi-key': '8641b11c31mshf744e14304c5003p10ad49jsnfe556cb843cb',
       'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
     }
@@ -66,26 +112,22 @@ export default function Section1() {
   }
 
 
-
-
-
-
   const searchforhotel = (e) => {
     const inputtext = e.target.value;
-
     setSearch(inputtext);
-    // if (inputtext === "") {
-    //   setSuggestion(false);
-    //   return false;
-    // }
-    // setHoteldata(inputtext)
   }
+
 
 
   const searchhotel = (e) => {
     e.preventDefault();
     if (hoteldata != '') {
-      adddata();
+      if (navigator.onLine === true) {
+        adddata();
+      }
+      if (navigator.onLine === false) {
+        setOpen(true);
+      }
     } else {
       console.log(hoteldata)
     }
@@ -101,6 +143,17 @@ export default function Section1() {
 
   return (
     <div className='front-image'>
+      <div >
+        {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          // onClose={handleClose}
+          message="Check your internet connection"
+          action={action}
+        />
+      </div>
+
       <div className="middle-content">
         <Container className=' '>
           <Row>
@@ -130,27 +183,25 @@ export default function Section1() {
                       <div className={`${suggestion ? 'sugg-show' : 'sugg-hide'} auto-suggestion`}>
                         <Col>
                           <div className="auto-suggestion-list">
-                            <ul>
-                              {apiData.map((elem, index) => {
-                                // console.log(elem)
-                                const ids = elem.gaiaId;
-                                // console.log(ids)
-                                const listing = `/hotelList/${elem.regionNames.shortName}/`+`${ids}`
-
-
-                                if (!ids) {
-                                  return null
-                                } else {
-                                  return (
-                                    <Link as={NavLink} to={listing} key={index}>
-                                      <li >{elem.regionNames.shortName} </li>
-                                    </Link>
-                                  )
-                                }
-
-
-                              })}
-                            </ul>
+                            <ErrorBoundary fallback={<>Error occured</>}>
+                              <ul>
+                                {apiData.map((elem, index) => {
+                                  // console.log(elem)
+                                  const ids = elem.gaiaId;
+                                  // console.log(ids)
+                                  const listing = `/hotelList/${elem.regionNames.shortName}/` + `${ids}`
+                                  if (!ids) {
+                                    return null
+                                  } else {
+                                    return (
+                                      <Link as={NavLink} to={listing} key={index}>
+                                        <li >{elem.regionNames.shortName} </li>
+                                      </Link>
+                                    )
+                                  }
+                                })}
+                              </ul>
+                            </ErrorBoundary>
                           </div>
                         </Col>
                       </div>

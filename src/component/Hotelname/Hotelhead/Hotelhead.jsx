@@ -89,17 +89,17 @@ export default function Hotelhead({ id }) {
                                     <p className='show-map-link ms-2' onClick={() => mapopen()}> - show map </p>
                                 </div>
                                 <Row className='head-content'>
-                                    <Col sm={9}>
+                                    <Col md={9}>
                                         {/*  */}
                                         <Row className='front-row'>
-                                            <Col className='p-0 h-100' sm={8}>
+                                            <Col className='p-0 h-100' md={8}>
                                                 <div className="big-image">
                                                     {imageslist && (
                                                         <img src={imageslist[1].image.url} alt="" className='img-fluid' />
                                                     )}
                                                 </div>
                                             </Col>
-                                            <Col sm={4} className='d-flex flex-column justify-content-between pe-0 h-100'>
+                                            <Col sm={4} className='d-flex flex-column justify-content-between pe-0 h-100 d-none d-md-block'>
                                                 <Row className='second-col'>
                                                     <Col sm={12} className=' small-col'>
                                                         <div className="small-image-1 h-100">
@@ -161,9 +161,9 @@ export default function Hotelhead({ id }) {
                                             </Col>
                                         </Row>
                                     </Col>
-                                    <Col sm={3} className='aside '>
+                                    <Col md={3} className='aside'>
                                         <Row className='position-relative' onClick={() => mapopen()} >
-                                            <img src="../images/mapimg.jpg" autoPlay loop muted className='img-fluid' />
+                                            <img src="../images/mapimg.jpg" autoPlay loop muted className='' />
                                             <div className="asside-content position-absolute">
                                                 <div className="location-icons-map">
                                                     <ImLocation color='#006CE4' size={29} />

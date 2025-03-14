@@ -16,11 +16,53 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 
 import { Range } from "react-range";
 
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
 
 export default function HotelList() {
+
+// for checking if user is online or not 
+  const [open, setOpen] = React.useState(false);
+
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      {/* <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button> */}
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+
+
+
+
+
+
+
+
+
   const [hotelsuggest, setHotelsuggest] = useState([]);
   const [numberof, setNumberof] = useState(0);
   const [filteredHotels, setFilteredHotels] = useState([]);
@@ -67,8 +109,24 @@ export default function HotelList() {
   const dispatch = useDispatch()
 
   const saveditems = (elem) => {
-    dispatch(addToCart(elem))
+    if(navigator.onLine===false){
+      setOpen(true);
+    }
+    if(navigator.onLine===true){
+      dispatch(addToCart(elem))
+    }
   }
+
+
+
+
+  if (navigator.onLine === true) {
+    console.log("online")
+  }
+  if (navigator.onLine === false) {
+   console.log("offline")
+  }
+
 
   const id = useParams();
   const hotelid = id.id;
@@ -186,6 +244,16 @@ export default function HotelList() {
 
   return (
     <Container fluid='xxl' className='mt-3'>
+       <div >
+              {/* <Button onClick={handleClick}>Open Snackbar</Button> */}
+              <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                // onClose={handleClose}
+                message="Check your internet connection"
+                action={action}
+              />
+            </div>
       <Row className='mb-4'>
         <Toaster />
         <div className="search-features">
@@ -227,7 +295,7 @@ export default function HotelList() {
                   <p>Your budget (per night)</p>
                 </div>
                 <div className="filter-price-range d-flex">
-                  <p>₹ 400 </p> - <p> ₹ {values[0]}</p>
+                  <p>₹ 500 </p> - <p> ₹ {values[0]}</p>
                 </div>
                 <div className="price-range-slider">
                   <Range
