@@ -66,7 +66,7 @@ function CollapsibleExample() {
         </Nav>
         {/* </Navbar.Collapse> */}
       </Container>
-      <Container fluid='xl' className='p-0'>
+      {/* <Container fluid='xl' className='p-0'>
         <Col>
           <div className="stays">
             <div className="stays-box">
@@ -76,7 +76,7 @@ function CollapsibleExample() {
             </div>
           </div>
         </Col>
-      </Container>
+      </Container> */}
     </Navbar>
   );
 }

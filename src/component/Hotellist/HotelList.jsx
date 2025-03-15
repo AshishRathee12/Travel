@@ -119,12 +119,12 @@ export default function HotelList() {
 
 
 
-  if (navigator.onLine === true) {
-    console.log("online")
-  }
-  if (navigator.onLine === false) {
-    console.log("offline")
-  }
+  // if (navigator.onLine === true) {
+  //   console.log("online")
+  // }
+  // if (navigator.onLine === false) {
+  //   console.log("offline")
+  // }
 
 
   const id = useParams();
