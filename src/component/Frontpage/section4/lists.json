@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Domestic Cities",
+        "lists": ["Srinagar","Hyderabad","Rishkikesh","Pune","Udaipur","Amritsar","Trivandrum","Jodhpur","Bangalore","Jaipur","Hampi","Shirdi","Varanasi","Manāli","Mussoorie","Nainital","Dehradun","Mumbai","Chennai","Ayodhya hotels","New Delhi","Cochin","Agra","Vrindavan","Gurgaon hotels","Lucknow","Jaisalmer","Ujjain","Haridwār","Ladakh"]
+    },
+    {
+        "title": "Regions",
+        "lists":["Goa","Pondicherry","Jim Corbett National Park","Jammu & Kashmir","Chandigarh","Pattaya","Kabini River","Delhi NCR","Kerala","Bali","South India","Meghalaya","Kutch","Lakshadweep","Himalaya"]
+    },
+    {
+        "title":"Countries",
+        "lists":["India","Germany","Japan","Dubai","USA","England","France","Spain","Italy","Thailand","Vietnam","Singapore","SriLanka","Malaysia","Canada","Brazil","Russia","Australia","Iceland","Neitherland"]
+    }
+]

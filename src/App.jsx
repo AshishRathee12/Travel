@@ -12,6 +12,8 @@ import Hotelname from './component/Hotelname/Hotelname';
 import Addedtocart from './component/Adding to cart/Addedtocart';
 import ActionAlerts from './component/Networkcompo/TransitionAlerts';
 import Footers from './component/Footercompo/Footers';
+import Error from './component/Error';
+import { Helmet } from 'react-helmet';
 
 function App() {
 
@@ -28,11 +30,16 @@ function App() {
       </Row>
 
       <Routes>
-        <Route path='/' element={<Home />}></Route>
+
+        <Route path='/' element={<Home />}>
+        </Route>
         <Route path='/HotelList/:name/:id' element={<HotelList />}>
         </Route>
         <Route path='/Hotelname/:id' element={<Hotelname />}></Route>
         <Route path='/Saved-items/' element={<Addedtocart />}></Route>
+        <Route path="/Pagenotfound/*" element={<Error />} />
+        <Route path="/Pagenotfound/Hoteldetails/*" element={<Error />} />
+        <Route path='*' element={<Error />}></Route>
       </Routes >
 
       <Footers />
