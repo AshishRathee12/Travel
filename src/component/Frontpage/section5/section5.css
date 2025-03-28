@@ -19,7 +19,7 @@
 }
 .facts-different{
     background-color: rgb(239,243,248);
-    border-radius: 15px;
+    border-radius: 15px 15px 0px 0px;
     padding: 35px 20px 48px 20px;
 }
 .inner-info{

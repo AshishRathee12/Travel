@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { CiHeart } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Addedtocart from '../Adding to cart/Addedtocart';
 import { NavLink } from 'react-bootstrap';
@@ -26,6 +26,20 @@ function CollapsibleExample() {
   const formsubmit = (e) => {
     e.preventDefault();
   }
+
+  const windowresize = () => {
+    if (window.screen.width < 550) {
+      let logoimages = document.querySelector(".logo-img");
+      console.log(logoimages.src)
+      logoimages.src = "/images/small-logo-img.png";
+    }else if(window.screen.width>550){
+      let logoimages = document.querySelector(".logo-img");
+      console.log(logoimages.src)
+      logoimages.src = "/images/logo.png";
+    }
+  }
+
+  window.addEventListener('resize', windowresize)
 
 
   return (
@@ -66,7 +80,7 @@ function CollapsibleExample() {
         </Nav>
         {/* </Navbar.Collapse> */}
       </Container>
-      <Container fluid='xl' className='p-0'>
+      {/* <Container fluid='xl' className='p-0'>
         <Col>
           <div className="stays">
             <div className="stays-box">
@@ -76,7 +90,7 @@ function CollapsibleExample() {
             </div>
           </div>
         </Col>
-      </Container>
+      </Container> */}
     </Navbar>
   );
 }

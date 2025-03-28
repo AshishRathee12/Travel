@@ -2,16 +2,16 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import './Footer.css';
 
-export default function Footer() {
+export default function Footers() {
     return (
-        <Container>
-            <Footer>
-                <div className="footer-content">
+        <footer>
+            <Container>
+                <div className="footer-content pt-5 ">
                     <Row>
-                        <Col>
+                        <Col md={3} className='col-6'>
                             <div className="col-content">
                                 <div className="heading">
-                                    <h4>Support</h4>
+                                    <h6>Support</h6>
                                 </div>
                                 <div className="footer-list-items">
                                     <ul>
@@ -23,30 +23,10 @@ export default function Footer() {
                                 </div>
                             </div>
                         </Col>
-                        <Col>
+                        <Col md={3} className='col-6'>
                             <div className="col-content">
                                 <div className="heading">
-                                    <h4>Discover</h4>
-                                </div>
-                                <div className="footer-list-items">
-                                    <ul>
-                                        <li>Genius loyalty programme</li>
-                                        <li>Seasonal and holiday deals</li>
-                                        <li>Travel articles</li>
-                                        <li>Booking.com for Business</li>
-                                        <li>Traveller Review Awards</li>
-                                        <li>Car hire</li>
-                                        <li>Flight finder</li>
-                                        <li>Restaurant reservations</li>
-                                        <li>Booking.com for Travel Agents</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col>
-                            <div className="col-content">
-                                <div className="heading">
-                                    <h4>Terms and settings</h4>
+                                    <h6>Terms and settings</h6>
                                 </div>
                                 <div className="footer-list-items">
                                     <ul>
@@ -59,10 +39,10 @@ export default function Footer() {
                                 </div>
                             </div>
                         </Col>
-                        <Col>
+                        <Col md={3} className='col-6'>
                             <div className="col-content">
                                 <div className="heading">
-                                    <h4>Partners</h4>
+                                    <h6>Partners</h6>
                                 </div>
                                 <div className="footer-list-items">
                                     <ul>
@@ -74,10 +54,10 @@ export default function Footer() {
                                 </div>
                             </div>
                         </Col>
-                        <Col>
+                        <Col md={3} className='col-6'>
                             <div className="col-content">
                                 <div className="heading">
-                                    <h4>About</h4>
+                                    <h6>About</h6>
                                 </div>
                                 <div className="footer-list-items">
                                     <ul>
@@ -94,7 +74,7 @@ export default function Footer() {
                         </Col>
                     </Row>
                 </div>
-            </Footer>
-        </Container>
+            </Container>
+        </footer>
     )
 }

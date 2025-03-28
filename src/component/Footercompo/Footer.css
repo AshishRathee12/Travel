@@ -1,3 +1,15 @@
 Footer{
-    background-color: rgba(184, 182, 182, 0.608);
+    background-color: rgba(184, 182, 182, 0.2);
+}
+li{
+    list-style: none;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+ul {
+    padding: 0;
+}
+h6{
+    font-weight: 700;
 }

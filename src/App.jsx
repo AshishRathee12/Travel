@@ -9,9 +9,9 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import HotelList from './component/Hotellist/HotelList';
 import Hotelname from './component/Hotelname/Hotelname';
-import Footer from './component/Footercompo/Footer';
 import Addedtocart from './component/Adding to cart/Addedtocart';
 import ActionAlerts from './component/Networkcompo/TransitionAlerts';
+import Footers from './component/Footercompo/Footers';
 
 function App() {
 
@@ -35,9 +35,8 @@ function App() {
         <Route path='/Saved-items/' element={<Addedtocart />}></Route>
       </Routes >
 
-      {/* <Footer /> */}
-      {/* <Row>
-     </Row> */}
+      <Footers />
+
 
     </>
   )
