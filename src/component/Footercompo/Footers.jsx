@@ -5,7 +5,6 @@ import './Footer.css';
 export default function Footers() {
     return (
         <footer>
-            somet
             <Container>
                 <div className="footer-content pt-5 ">
                     <Row>
