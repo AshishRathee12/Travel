@@ -15,7 +15,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { FaRegCalendarAlt } from "react-icons/fa";
 
 import { Range } from "react-range";
-
+import { FaAngleDown } from "react-icons/fa";
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -92,6 +92,15 @@ export default function HotelList() {
   const [values, setValues] = React.useState([1000]);
 
 
+
+  const placerecommanding = () => {
+    setPlacerecommand(!placerecommand)
+
+    const rotatebutton = document.querySelector(".icon-down svg");
+    rotatebutton.classList.toggle("rotate");
+
+
+  }
 
 
 
@@ -365,7 +374,7 @@ export default function HotelList() {
                   {/* <div className="sorting-dropdown position-absolute"> */}
                   <div className={`${showshort ? 'recommand-show' : 'recommand-hide'} sorting-dropdown position-absolute`}>
                     <div className="drop-down-content">
-                      <div>
+                      <div className='drop-down-content-inside'>
                         {sortinglist.map((elem, index) => {
                           return <p key={index} onClick={sortingselection}>{elem}</p>
                         })}
@@ -375,7 +384,7 @@ export default function HotelList() {
                 </div>
 
                 <div className="smallsize-recommand  d-block d-md-none position-relative">
-                  <p className='text-center recommand-heading mt-2 small-recommand-heading px-2' onClick={() => setPlacerecommand(!placerecommand)}>Places near {nameing}</p>
+                  <p className='text-center recommand-heading mt-2 small-recommand-heading px-2' onClick={placerecommanding}>Places near {nameing} <div className="icon-down d-inline"><FaAngleDown /></div></p>
                   <Col sm={12} className={`${placerecommand ? "recommand-show" : "recommand-hide"} recommand-3-col ms-1 p-0 d-block d-md-none position-absolute xyz-recommand`}>
                     <div className="recommand-places position-relative mt-3">
                       <ul className='sticky-ul'>
@@ -396,7 +405,7 @@ export default function HotelList() {
               {
                 filteredHotels && filteredHotels.length > 0 ? (
                   filteredHotels.map((elem, index) => {
-                    // console.log(elem)
+                    console.log(elem)
                     const hotelname = '/hotelname/' + elem.name;
                     const roomimg = elem?.propertyImage?.image?.url || "Coudn't Load Image";
                     const totalreviews = elem?.reviews?.total || "Nice";

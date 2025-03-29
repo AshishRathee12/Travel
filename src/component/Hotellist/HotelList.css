@@ -115,7 +115,10 @@
 .recommand-show {
     display: block !important;
     z-index: 999;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    /* box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px; */
 }
 
 .small-recommand-heading {
@@ -124,6 +127,9 @@
     cursor: pointer;
 }
 
+.drop-down-content-inside {
+    padding: 15px;
+}
 
 .recommand-3-col {
     background-color: #fff;
@@ -134,9 +140,13 @@
 }
 
 .xyz-recommand {
-    right: 100%;
+    right: 0%;
 }
 
+.rotate{
+    transition: 0.3s all ease-in;
+    transform: rotate(180deg);
+}
 
 .drop-down-content {
     /* padding: 10px; */
@@ -179,25 +189,29 @@
     background-color: #fff; */
 /* } */
 
-.filter-title{
+.filter-title {
     border-bottom: 1px solid rgba(190, 189, 189, 0.578);
 }
-.filter-title p{
+
+.filter-title p {
     font-size: 18px;
     font-weight: 700;
 }
-.filter-page{
+
+.filter-page {
     border: 1px solid rgba(128, 128, 128, 0.542);
     border-radius: 5px;
     padding: 20px 5px;
 }
-.filter-price-heading p{
+
+.filter-price-heading p {
     font-size: 15px;
     font-weight: 700;
 }
-.filter-price-range p{
+
+.filter-price-range p {
     font-size: 14px;
-    font-weight:300;
+    font-weight: 300;
 }
 
 
