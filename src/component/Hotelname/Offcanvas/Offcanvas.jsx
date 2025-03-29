@@ -6,7 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 const options = [
     {
-        name: '+26 images',
+        name: 'More images',
         scroll: false,
         backdrop: true,
     },

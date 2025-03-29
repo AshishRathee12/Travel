@@ -91,7 +91,7 @@ export default function Section4() {
 
 
   return (
-    <Container className='mt-4'>
+    <Container className='mt-4' fluid="xl">
       <Row>
         <p className='travel-popular-heading'>Popular with travelers from India</p>
       </Row>
@@ -100,7 +100,7 @@ export default function Section4() {
           {listsname.map((elem, index) => {
             // console.log(elem)
             return (
-              <div className="button-popular me-5" key={index} onClick={changinglists}>
+              <div className="button-popular me-sm-5" key={index} onClick={changinglists}>
                 <p>{elem}</p>
               </div>
             )

@@ -66,7 +66,7 @@ export default function Facilities({ id }) {
                                                             <div className="facility-items">
                                                                 <div>{elem.items.map((elem, index) => {
                                                                     return (
-                                                                        <p key={index} className='m-0'><IoIosCheckmark className='me-2' />{elem.text}</p>
+                                                                        <p key={index} className='m-0'><IoIosCheckmark className='me-2' color='green'/>{elem.text}</p>
                                                                     )
                                                                 })}</div>
 

@@ -14,7 +14,7 @@ export default function Section3() {
                 <Row>
                     <Col sm={6}>
                         <Link to={"hotelList/New Delhi/177865"} as={NavLink}>
-                            <div className="trending-place-img">
+                            <div className="trending-place-img img-trending-1">
                                 <div className="img">
                                     <img src='../images/trending-1.jpg' alt="" className='img-fluid' />
                                 </div>

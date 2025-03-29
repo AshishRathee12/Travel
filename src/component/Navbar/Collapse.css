@@ -67,3 +67,17 @@ a {
         color: Blue;
     }
 }
+
+@media (max-width:500px) {
+    .logo-img{
+        width: 140px !important;
+    }
+}
+@media (max-width:370px) {
+    .logo-img{
+        width: 100px !important;
+    }
+    .navbar{
+        padding: 10px 0px !important;
+    }
+}

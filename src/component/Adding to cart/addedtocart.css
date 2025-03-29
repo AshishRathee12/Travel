@@ -35,9 +35,7 @@
     font-size: 18px;
 }
 
-.cart-body {
-    /* background-color: grey; */
-}
+
 
 .hotel-name,.hotel-price,.view,.hotel-delete{
     margin-top: 10px !important;
@@ -86,5 +84,10 @@ tr {
     .enter-info {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+}
+@media (max-width:370px) {
+    .nodata{
+        font-size:35px;
     }
 }

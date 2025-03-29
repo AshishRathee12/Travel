@@ -8,10 +8,6 @@
     top: 50%;
 }
 
-.btn {
-
-}
-
 .offcanvas {
     max-width: 96% !important;
     border-radius: 13px;
@@ -54,4 +50,10 @@
 
 .offcanvas-header .btn-close {
     margin: 0px !important;
+}
+@media (max-width:490px){
+.offcanvas-btn{
+    top: 0px;
+    left: -13%;
+}
 }
